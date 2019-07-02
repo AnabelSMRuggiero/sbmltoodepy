@@ -17,9 +17,22 @@ This creates a new python file containing a class implementing the SBML model.
 To run the model, instantiate the class and call the RunSimulation method with the desired timestep.
 
 ```python
+model = SBMLmodel()
 model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
 
+The following python packages were used in this project:
+* numpy[1]
+* libsbml[2]
+
+Models from the following papers were used to develop the model and are included as examples:
+
+
 For more information about this package, see **Insert link to documentation here**
+
 For this project's github repository, [click here](https://github.com/SMRuggiero/sbmltopyode)
+
 For the publication associated with this package, see **Insert link to publication here**
+
+[1]: https://www.numpy.org/ "NumPy"
+[2]: http://sbml.org/Software/libSBML "libSBML"
