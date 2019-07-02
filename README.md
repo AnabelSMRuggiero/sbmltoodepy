@@ -12,6 +12,14 @@ The parameters are:
 * outputFilePath: An optional file path of where the python model implementation will be created. If not provided, the output path will be assumedtobe the same as the input, but with a .py extension.
 * className: The name of the class implementing the sbml model.
 
+
+This creates a new python file containing a class implementing the SBML model. 
+To run the model, instantiate the class and call the RunSimulation method with the desired timestep.
+
+```python
+model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
+```
+
 For more information about this package, see **Insert link to documentation here**
 For this project's github repository, [click here](https://github.com/SMRuggiero/sbmltopyode)
 For the publication associated with this package, see **Insert link to publication here**
