@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" metaid="_604557" level="2" version="3">
+  <model metaid="metaid_0000002" id="Guyton1972_Angiotensin" name="Guyton1972_Angiotensin">
+    <notes>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <p>This a model from the article:      <br/>
+        <strong>Circulation: overall regulation.</strong>
+        <br/>
+          Guyton AC, Coleman TG, Granger HJ.      <em>Annu Rev Physiol</em>
+          1972;34:13-46      <a href="http://www.ncbi.nlm.nih.gov/pubmed/4334846">4334846</a>
+          ,      <br/>
+        <strong>Abstract:</strong>
+        <br/>
+          No abstract available      </p>
+      <p>This model was taken from the      <a href="http://www.cellml.org/models">CellML repository</a>
+          and automatically converted to SBML.      <br/>
+          The original model was:      <a href="http://www.cellml.org/models/guyton_angiotensin_2008_version02">
+        <strong>Guyton AC, Coleman TG, Granger HJ. (2008) - version02</strong>
+      </a>
+      <br/>
+          The original CellML model was created by:      <br/>
+      <strong>Terkildsen, Jonna,</strong>
+      <br/>
+          j.terkildsen@aukland.ac.nz      <br/>
+          The University of Auckland      <br/>
+          Auckland Bioengineering Institute      <br/></p>
+    <p>This model originates from BioModels Database: A Database of Annotated Published Models (http://www.ebi.ac.uk/biomodels/). It is copyright (c) 2005-2011 The BioModels.net Team.      <br/>
+          To the extent possible under law, all copyright and related or neighbouring rights to this encoded model have been dedicated to the public domain worldwide. Please refer to      <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Creative Commons CC0">CC0 Public Domain Dedication</a>
+          for more information.      </p>
+  <p>In summary, you are entitled to use this encoded model in absolutely any manner you deem suitable, verbatim, or with modification, alone or embedded it in a larger context, redistribute it, commercially or not, in a restricted way or not..      <br/>
+  <br/>
+          To cite BioModels Database, please use:      <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
+</p>
+</body>
+</notes><annotation>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+    <rdf:Description rdf:about="#metaid_0000002">
+      <bqmodel:is>
+        <rdf:Bag>
+          <rdf:li rdf:resource="http://identifiers.org/biomodels.db/MODEL0911342562"/>
+        </rdf:Bag>
+      </bqmodel:is>
+      <bqmodel:isDescribedBy>
+        <rdf:Bag>
+          <rdf:li rdf:resource="http://identifiers.org/pubmed/4334846"/>
+        </rdf:Bag>
+      </bqmodel:isDescribedBy>
+      <bqbiol:hasTaxon>
+        <rdf:Bag>
+          <rdf:li rdf:resource="http://identifiers.org/taxonomy/9606"/>
+        </rdf:Bag>
+      </bqbiol:hasTaxon>
+      <bqbiol:isVersionOf>
+        <rdf:Bag>
+          <rdf:li rdf:resource="http://identifiers.org/go/GO:1900133"/>
+        </rdf:Bag>
+      </bqbiol:isVersionOf>
+    </rdf:Description>
+  </rdf:RDF>
+</annotation><listOfUnitDefinitions>
+  <unitDefinition metaid="_604569" id="substance" name="normalised">
+    <listOfUnits>
+      <unit metaid="_604581" kind="dimensionless"/>
+    </listOfUnits>
+  </unitDefinition>
+</listOfUnitDefinitions><listOfCompartments>
+  <compartment metaid="_576634" id="Compartment" size="1"/>
+</listOfCompartments><listOfParameters>
+  <parameter metaid="_576657" id="MDFLW" name="MDFLW" value="1.00051" units="dimensionless"/>
+  <parameter metaid="_576659" id="ANGSCR" name="ANGSCR" units="dimensionless" constant="false"/>
+  <parameter metaid="_576661" id="MDFLW3" name="MDFLW3" units="dimensionless" constant="false"/>
+  <parameter metaid="_576663" id="ANX1" name="ANX1" value="0" units="dimensionless" constant="false"/>
+  <parameter metaid="_576665" id="ANX" name="ANX" units="dimensionless" constant="false"/>
+  <parameter metaid="_576667" id="ANPR" name="ANPR" units="dimensionless" constant="false"/>
+  <parameter metaid="_576669" id="ANPRT" name="ANPRT" units="dimensionless" constant="false"/>
+  <parameter metaid="_576671" id="ANPR1" name="ANPR1" units="dimensionless" constant="false"/>
+  <parameter metaid="_576673" id="ANC" name="ANC" value="0.859476" units="dimensionless" constant="false"/>
+  <parameter metaid="_576675" id="ANM" name="ANM" units="dimensionless" constant="false"/>
+  <parameter metaid="_576677" id="ANU" name="ANU" units="dimensionless" constant="false"/>
+  <parameter metaid="_576679" id="ANU1" name="ANU1" units="dimensionless" constant="false"/>
+  <parameter metaid="_576681" id="ANUVN" name="ANUVN" units="dimensionless" constant="false"/>
+  <parameter metaid="_576683" id="ANXM" name="ANXM" value="0" units="dimensionless"/>
+  <parameter metaid="_576685" id="ANV" name="ANV" value="5000" units="dimensionless"/>
+  <parameter metaid="_576687" id="REK" name="REK" value="1" units="dimensionless"/>
+  <parameter metaid="_576689" id="ANGINF" name="ANGINF" value="0" units="dimensionless"/>
+  <parameter metaid="_576691" id="ANGKNS" name="ANGKNS" value="0" units="dimensionless"/>
+  <parameter metaid="_576693" id="ANT" name="ANT" value="12" units="dimensionless"/>
+  <parameter metaid="_576695" id="Z12" name="Z12" value="5" units="dimensionless"/>
+  <parameter metaid="_576697" id="ANMUL" name="ANMUL" value="1.8" units="dimensionless"/>
+  <parameter metaid="_576699" id="ANMLL" name="ANMLL" value="0.7" units="dimensionless"/>
+  <parameter metaid="_576701" id="ANCSNS" name="ANCSNS" value="0.4" units="dimensionless"/>
+  <parameter metaid="_576703" id="ANULL" name="ANULL" value="0.8" units="dimensionless"/>
+  <parameter metaid="_576705" id="ANUM" name="ANUM" value="6" units="dimensionless"/>
+  <parameter metaid="_576707" id="ANUVM" name="ANUVM" value="0" units="dimensionless"/>
+  <parameter metaid="_576709" id="tu" name="time_unit" value="1" units="time"/>
+</listOfParameters><listOfRules>
+  <rateRule metaid="_576635" variable="ANX1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <divide/>
+        <apply>
+          <minus/>
+          <ci> ANX </ci>
+          <ci> ANX1 </ci>
+        </apply>
+        <apply>
+          <times/>
+          <ci> tu </ci>
+          <ci> ANV </ci>
+        </apply>
+      </apply>
+    </math>
+  </rateRule>
+  <rateRule metaid="_576636" variable="ANC">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <divide/>
+        <apply>
+          <minus/>
+          <ci> ANPR1 </ci>
+          <ci> ANC </ci>
+        </apply>
+        <apply>
+          <times/>
+          <ci> tu </ci>
+          <ci> ANT </ci>
+        </apply>
+      </apply>
+    </math>
+  </rateRule>
+  <assignmentRule metaid="_576638" variable="MDFLW3">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <ci> MDFLW </ci>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576640" variable="ANGSCR">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <piecewise>
+        <piece>
+          <apply>
+            <divide/>
+            <cn> 1 </cn>
+            <apply>
+              <plus/>
+              <cn> 1 </cn>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <ci> MDFLW3 </ci>
+                  <cn> 1 </cn>
+                </apply>
+                <cn> 72 </cn>
+              </apply>
+            </apply>
+          </apply>
+          <apply>
+            <gt/>
+            <ci> MDFLW3 </ci>
+            <cn> 1 </cn>
+          </apply>
+        </piece>
+        <otherwise>
+          <apply>
+            <minus/>
+            <cn> 10 </cn>
+            <apply>
+              <divide/>
+              <cn> 9 </cn>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <times/>
+                  <apply>
+                    <minus/>
+                    <cn> 1 </cn>
+                    <ci> MDFLW3 </ci>
+                  </apply>
+                  <cn> 8 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </otherwise>
+      </piecewise>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576642" variable="ANX">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <times/>
+        <apply>
+          <minus/>
+          <ci> ANGSCR </ci>
+          <cn> 1 </cn>
+        </apply>
+        <ci> ANXM </ci>
+      </apply>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576644" variable="ANPRT">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <times/>
+        <apply>
+          <plus/>
+          <ci> ANGSCR </ci>
+          <ci> ANX1 </ci>
+        </apply>
+        <ci> REK </ci>
+      </apply>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576646" variable="ANPR">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <piecewise>
+        <piece>
+          <cn type="e-notation"> 1 <sep/> -5 </cn>
+          <apply>
+            <lt/>
+            <ci> ANPRT </ci>
+            <cn type="e-notation"> 1 <sep/> -5 </cn>
+          </apply>
+        </piece>
+        <otherwise>
+          <ci> ANPRT </ci>
+        </otherwise>
+      </piecewise>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576648" variable="ANPR1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <piecewise>
+        <piece>
+          <ci> ANGKNS </ci>
+          <apply>
+            <gt/>
+            <ci> ANGKNS </ci>
+            <cn> 0 </cn>
+          </apply>
+        </piece>
+        <otherwise>
+          <apply>
+            <plus/>
+            <ci> ANPR </ci>
+            <ci> ANGINF </ci>
+          </apply>
+        </otherwise>
+      </piecewise>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576650" variable="ANM">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <minus/>
+        <ci> ANMUL </ci>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci> ANMUL </ci>
+            <cn> 1 </cn>
+          </apply>
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <apply>
+                  <minus/>
+                  <ci> ANMLL </ci>
+                  <cn> 1 </cn>
+                </apply>
+                <apply>
+                  <minus/>
+                  <ci> ANMLL </ci>
+                  <ci> ANMUL </ci>
+                </apply>
+              </apply>
+              <apply>
+                <minus/>
+                <ci> ANC </ci>
+                <cn> 1 </cn>
+              </apply>
+              <ci> ANCSNS </ci>
+            </apply>
+            <cn> 1 </cn>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576652" variable="ANU1">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <plus/>
+        <apply>
+          <times/>
+          <apply>
+            <minus/>
+            <ci> ANM </ci>
+            <cn> 1 </cn>
+          </apply>
+          <ci> ANUM </ci>
+        </apply>
+        <cn> 1 </cn>
+      </apply>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576654" variable="ANU">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <piecewise>
+        <piece>
+          <ci> ANULL </ci>
+          <apply>
+            <lt/>
+            <ci> ANU1 </ci>
+            <ci> ANULL </ci>
+          </apply>
+        </piece>
+        <otherwise>
+          <ci> ANU1 </ci>
+        </otherwise>
+      </piecewise>
+    </math>
+  </assignmentRule>
+  <assignmentRule metaid="_576656" variable="ANUVN">
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <plus/>
+        <apply>
+          <times/>
+          <apply>
+            <minus/>
+            <ci> ANU </ci>
+            <cn> 1 </cn>
+          </apply>
+          <ci> ANUVM </ci>
+        </apply>
+        <cn> 1 </cn>
+      </apply>
+    </math>
+  </assignmentRule>
+</listOfRules>
+</model>
+</sbml>
