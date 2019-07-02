@@ -9,7 +9,7 @@ import re
 import numpy as np
 import sys
 
-from .ModelDataClasses import *
+from sbmltopyode.ModelDataClasses import *
 
             
 def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):

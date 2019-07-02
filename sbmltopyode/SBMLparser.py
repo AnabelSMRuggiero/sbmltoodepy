@@ -7,7 +7,7 @@ Created on Tue Jul  3 12:12:05 2018
 from libsbml import *
 import re
 import sys
-from .ModelDataClasses import *
+from sbmltopyode.ModelDataClasses import *
 
 def ParseParameterAssignment(parameterIndex, parameter):
     #if parameter.isSetValue() and parameter.isSetId():

@@ -5,11 +5,11 @@ Created on Fri Mar 15 07:59:59 2019
 @author: Steve
 """
 
-from .SBMLparser import ParseSBMLFile
-from .python3ClassGenerator import GenerateModel
+from sbmltopyode.SBMLparser import ParseSBMLFile
+from sbmltopyode.python3ClassGenerator import GenerateModel
 import sys
 import os
-from .ModelDataClasses import *
+from sbmltopyode.ModelDataClasses import *
 
 def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = None, className = "SBMLmodel"):
     """
