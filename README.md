@@ -30,13 +30,21 @@ The following python packages were used in this project:
 Models from the following papers were used to develop the model and are included as examples:
 
 [Borisov, Nikolay, et al. "Systems-level interactions between insulin–EGF networks amplify mitogenic signaling." Molecular systems biology 5.1 (2009).] [4]
+
 [Cizmeci, Deniz, and Yaman Arkun. "Regulatory networks and complex interactions between the insulin and angiotensin II signalling systems: models and implications for hypertension and diabetes." PloS one 8.12 (2013): e83640.][5]
+
 [Guyton, Arthur C., Thomas G. Coleman, and Harris J. Granger. "Circulation: overall regulation." Annual review of physiology 34.1 (1972): 13-44.][6]
+
 [Kerkhoven, Eduard J., et al. "Handling uncertainty in dynamic models: the pentose phosphate pathway in Trypanosoma brucei." PLoS computational biology 9.12 (2013): e1003371.][7]
+
 [Lenbury, Yongwimon, Sitipong Ruktamatakul, and Somkid Amornsamarnkul. "Modeling insulin kinetics: responses to a single oral glucose administration or ambulatory-fed conditions." Biosystems 59.1 (2001): 15-25.][8]
+
 [Smallbone, Kieran, and Bernard M. Corfe. "A mathematical model of the colon crypt capturing compositional dynamic interactions between cell types." International journal of experimental pathology 95.1 (2014): 1-7.][9]
+
 [Vizán, Pedro, et al. "Controlling long-term signaling: receptor dynamics determine attenuation and refractory behavior of the TGF-β pathway." Sci. Signal. 6.305 (2013): ra106-ra106.][10]
+
 [Waugh, Helen V., and Jonathan A. Sherratt. "Macrophage dynamics in diabetic wound dealing." Bulletin of mathematical biology 68.1 (2006): 197-207.][11]
+
 [Zi, Zhike, et al. "Quantitative analysis of transient and sustained transforming growth factor‐β signaling dynamics." Molecular systems biology 7.1 (2011).][12]
 
 For more information about this package, see **Insert link to documentation here**
