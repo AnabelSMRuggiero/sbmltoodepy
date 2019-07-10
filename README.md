@@ -1,4 +1,4 @@
-# sbmltopyode
+# sbmltoodepy
 
 The simpliest use of this package is to use the ParseAndGenerate function to quickly create a python implementation of an SBML model.
 

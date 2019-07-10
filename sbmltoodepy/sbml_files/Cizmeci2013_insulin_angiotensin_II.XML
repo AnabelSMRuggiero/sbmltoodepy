@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+<model metaid="untitled" id="untitled">
+<annotation/>
+<listOfUnitDefinitions>
+<unitDefinition metaid="substance" id="substance" name="substance">
+<listOfUnits>
+<unit metaid="CDMT00036" kind="mole"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="volume" id="volume" name="volume">
+<listOfUnits>
+<unit metaid="CDMT00037" kind="litre"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="area" id="area" name="area">
+<listOfUnits>
+<unit metaid="CDMT00038" kind="metre" exponent="2"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="length" id="length" name="length">
+<listOfUnits>
+<unit metaid="CDMT00039" kind="metre"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition metaid="time" id="time" name="time">
+<listOfUnits>
+<unit metaid="CDMT00040" kind="second"/>
+</listOfUnits>
+</unitDefinition>
+</listOfUnitDefinitions>
+<listOfCompartments>
+<compartment metaid="default" id="default" size="1" units="volume"/>
+</listOfCompartments>
+<listOfSpecies>
+<species metaid="s1" id="s1" name="AKT" compartment="default" initialAmount="0.2">
+<annotation/>
+</species>
+<species metaid="s2" id="s2" name="pIRS1" compartment="default" initialAmount="1.2955">
+<annotation/>
+</species>
+<species metaid="s3" id="s3" name="NO" compartment="default" initialAmount="0.013">
+<annotation/>
+</species>
+<species metaid="s4" id="s4" name="ANGII" compartment="default" initialAmount="0.13" hasOnlySubstanceUnits="true" charge="0">
+<annotation/>
+</species>
+<species metaid="s5" id="s5" name="ROS" compartment="default" initialAmount="1.1504" hasOnlySubstanceUnits="true" charge="0">
+<annotation/>
+</species>
+<species metaid="s6" id="s6" name="ONOO" compartment="default" initialAmount="0.1496" hasOnlySubstanceUnits="true" charge="0">
+<annotation/>
+</species>
+<species metaid="s7" id="s7" name="sa3_degraded" compartment="default" initialAmount="0">
+<annotation/>
+</species>
+<species metaid="s8" id="s8" name="sa4_degraded" compartment="default" initialAmount="0">
+<annotation/>
+</species>
+<species metaid="s9" id="s9" name="sa5_degraded" compartment="default" initialAmount="0">
+<annotation/>
+</species>
+<species metaid="s10" id="s10" name="sa6_degraded" compartment="default" initialAmount="0">
+<annotation/>
+</species>
+</listOfSpecies>
+<listOfParameters>
+<parameter metaid="K1" id="K1" value="0.05" units="substance"/>
+<parameter metaid="K2" id="K2" value="0.05" units="substance"/>
+<parameter metaid="d1" id="d1" value="1" units="substance"/>
+<parameter metaid="d2" id="d2" value="1" units="substance"/>
+<parameter metaid="k1" id="k1" value="10" units="substance"/>
+<parameter metaid="k2" id="k2" value="10" units="substance"/>
+<parameter metaid="k3" id="k3" value="0.1" units="substance"/>
+<parameter metaid="k4" id="k4" value="0.01" units="substance"/>
+<parameter metaid="k5" id="k5" value="0.1" units="substance"/>
+<parameter metaid="k6" id="k6" value="10" units="substance"/>
+<parameter metaid="k7" id="k7" value="0.1" units="substance"/>
+<parameter metaid="k8" id="k8" value="0.1" units="substance"/>
+<parameter metaid="delta" id="delta" value="1" units="substance"/>
+<parameter metaid="beta" id="beta" value="1" units="substance"/>
+<parameter metaid="deltaon" id="deltaon" value="0.01" units="substance"/>
+<parameter metaid="deltano" id="deltano" value="0.01" units="substance"/>
+<parameter metaid="deltaang" id="deltaang" value="1" units="substance"/>
+<parameter metaid="deltar" id="deltar" value="0.01" units="substance"/>
+<parameter metaid="lambda" id="lambda" value="0.5" units="substance"/>
+<parameter metaid="phi" id="phi" value="1" units="substance"/>
+<parameter metaid="eta" id="eta" value="0.01" units="substance"/>
+<parameter metaid="psi" id="psi" value="0.559" units="substance"/>
+<parameter metaid="E2T" id="E2T" value="1" units="substance"/>
+</listOfParameters>
+<listOfReactions>
+<reaction metaid="re2" id="re2" name="activation of AKT by pIRS1" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00001" species="s2"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00002" species="s1"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00003">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<plus/>
+<apply>
+<minus/>
+<apply>
+<times/>
+<apply>
+<divide/>
+<apply>
+<plus/>
+<ci> d1 </ci>
+<ci> K1 </ci>
+</apply>
+<ci> K2 </ci>
+</apply>
+<ci> beta </ci>
+<ci> s1 </ci>
+<ci> s2 </ci>
+</apply>
+</apply>
+<apply>
+<divide/>
+<apply>
+<times/>
+<apply>
+<plus/>
+<ci> d1 </ci>
+<ci> K1 </ci>
+</apply>
+<ci> beta </ci>
+<ci> s2 </ci>
+<apply>
+<power/>
+<ci> s1 </ci>
+<cn type="integer"> 2 </cn>
+</apply>
+</apply>
+<apply>
+<plus/>
+<apply>
+<power/>
+<ci> K2 </ci>
+<cn type="integer"> 2 </cn>
+</apply>
+<apply>
+<times/>
+<ci> K2 </ci>
+<ci> s1 </ci>
+</apply>
+</apply>
+</apply>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> d1 </ci>
+<ci> beta </ci>
+<ci> s2 </ci>
+<ci> s1 </ci>
+</apply>
+<apply>
+<plus/>
+<ci> s1 </ci>
+<ci> K2 </ci>
+</apply>
+</apply>
+<apply>
+<divide/>
+<apply>
+<times/>
+<ci> K2 </ci>
+<ci> E2T </ci>
+<apply>
+<minus/>
+<cn type="integer"> 1 </cn>
+<ci> s1 </ci>
+</apply>
+</apply>
+<apply>
+<plus/>
+<apply>
+<minus/>
+<cn type="integer"> 1 </cn>
+<ci> s1 </ci>
+</apply>
+<ci> K2 </ci>
+</apply>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re4" id="re4" name="activation of AKT by ONOO" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00004" species="s6"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00005" species="s1"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00006">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> k3 </ci>
+<ci> s6 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re5" id="re5" name="activation of pIRS1 by AKT and ANGII" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00007" species="s1"/>
+<speciesReference metaid="CDMT00008" species="s4"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00009" species="s2"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00010">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<minus/>
+<apply>
+<plus/>
+<apply>
+<times/>
+<apply>
+<divide/>
+<apply>
+<times/>
+<apply>
+<divide/>
+<ci> delta </ci>
+<ci> beta </ci>
+</apply>
+<ci> K2 </ci>
+</apply>
+<ci> K1 </ci>
+</apply>
+<ci> E2T </ci>
+<ci> lambda </ci>
+</apply>
+<apply>
+<times/>
+<apply>
+<minus/>
+<ci> phi </ci>
+<apply>
+<times/>
+<ci> eta </ci>
+<apply>
+<plus/>
+<cn type="integer"> 1 </cn>
+<apply>
+<times/>
+<ci> k7 </ci>
+<ci> s4 </ci>
+</apply>
+</apply>
+<ci> psi </ci>
+</apply>
+</apply>
+<apply>
+<minus/>
+<cn type="integer"> 1 </cn>
+<ci> s1 </ci>
+</apply>
+</apply>
+</apply>
+<apply>
+<times/>
+<ci> delta </ci>
+<apply>
+<plus/>
+<ci> d1 </ci>
+<ci> K1 </ci>
+</apply>
+<ci> s2 </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re6" id="re6" name="activation of NO by AKT" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00011" species="s1"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00012" species="s3"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00013">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> k4 </ci>
+<apply>
+<minus/>
+<cn type="integer"> 1 </cn>
+<ci> s1 </ci>
+</apply>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re7" id="re7" name="production of ONOO from NO and ROS" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00014" species="s3"/>
+<speciesReference metaid="CDMT00015" species="s5"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00016" species="s6"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00017">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> k8 </ci>
+<ci> s3 </ci>
+<ci> s5 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re8" id="re8" name="degradation of NO" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00018" species="s3"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00019" species="s7"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00020">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> deltano </ci>
+<ci> s3 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re9" id="re9" name="activation of ANG II from NO" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00021" species="s3"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00022" species="s4"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00023">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> k6 </ci>
+<ci> s3 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re10" id="re10" name="degradation of ANGII" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00024" species="s4"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00025" species="s8"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00026">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> deltaang </ci>
+<ci> s4 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re11" id="re11" name="activation of ROS from ANGII" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00027" species="s4"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00028" species="s5"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00029">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> k5 </ci>
+<ci> s4 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re12" id="re12" name="degradation of ROS" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00030" species="s5"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00031" species="s9"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00032">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> deltar </ci>
+<ci> s5 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+<reaction metaid="re13" id="re13" name="degradation of ONOO" reversible="false" fast="false">
+<annotation/>
+<listOfReactants>
+<speciesReference metaid="CDMT00033" species="s6"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference metaid="CDMT00034" species="s10"/>
+</listOfProducts>
+<kineticLaw metaid="CDMT00035">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+<times/>
+<ci> deltaon </ci>
+<ci> s6 </ci>
+</apply>
+</math>
+</kineticLaw>
+</reaction>
+</listOfReactions>
+</model>
+</sbml>

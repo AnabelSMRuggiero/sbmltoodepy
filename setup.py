@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="sbmltopyode_SMRuggiero",
+    name="sbmltoodepy_SMRuggiero",
     version="0.0.1",
     author="SMR",
     author_email="SteveMRuggiero@gmail.com",
