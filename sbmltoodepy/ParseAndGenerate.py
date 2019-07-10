@@ -5,8 +5,8 @@ Created on Fri Mar 15 07:59:59 2019
 @author: Steve
 """
 
-from sbmltopyode.SBMLparser import ParseSBMLFile
-from sbmltopyode.python3ClassGenerator import GenerateModel
+from sbmltoodepy.SBMLparser import ParseSBMLFile
+from sbmltoodepy.python3ClassGenerator import GenerateModel
 import sys
 import os
 from sbmltopyode.ModelDataClasses import *
