@@ -29,7 +29,7 @@ The following python packages were used in this project:
 
 Models from the following papers were used to develop the model and are included as examples:
 
-[Borisov, Nikolay, et al. "Systems-level interactions between insulin–EGF networks amplify mitogenic signaling." Molecular systems biology 5.1 (2009).] [4]
+[Borisov, Nikolay, et al. "Systems-level interactions between insulin–EGF networks amplify mitogenic signaling." Molecular systems biology 5.1 (2009).][4]
 
 [Cizmeci, Deniz, and Yaman Arkun. "Regulatory networks and complex interactions between the insulin and angiotensin II signalling systems: models and implications for hypertension and diabetes." PloS one 8.12 (2013): e83640.][5]
 
