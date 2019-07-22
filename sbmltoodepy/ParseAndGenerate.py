@@ -9,7 +9,7 @@ from sbmltoodepy.SBMLparser import ParseSBMLFile
 from sbmltoodepy.python3ClassGenerator import GenerateModel
 import sys
 import os
-from sbmltopyode.ModelDataClasses import *
+from sbmltoodepy.ModelDataClasses import *
 
 def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = None, className = "SBMLmodel"):
     """
