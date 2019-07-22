@@ -15,5 +15,5 @@ python:
   install:
     - requirements: requires.txt
     - method: setuptools
-      path: sbmltoodepy
+      path: .
   
