@@ -13,7 +13,7 @@ formats: all
 python:
   version: 3.7
   install:
-    - requirements: requires.txt
+    requirements: requires.txt
     method: setuptools
     path: sbmltoodepy
   
