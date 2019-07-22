@@ -53,7 +53,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'sbmltopyode'
+project = 'sbmltoodepy'
 copyright = '2019, Steve M Ruggiero, Ashlee Nicole Ford Versypt'
 author = 'Steve M Ruggiero, Ashlee Nicole Ford Versypt'
 
@@ -238,7 +238,7 @@ html_static_path = ['_static']
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'SBML2PYODEdoc'
+htmlhelp_basename = 'SBMLTOODEPYdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -264,7 +264,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'SBML2PYODE.tex', 'SBML2PYODE Documentation',
+    (master_doc, 'SBMLTOODEPY.tex', 'SBMLTOODEPY Documentation',
      'Steve Ruggiero, Ashlee Nicole Ford Versypt', 'manual'),
 ]
 
@@ -306,7 +306,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'sbml2pyode', 'SBML2PYODE Documentation',
+    (master_doc, 'sbmltoodepy', 'SBMLTOODEPY Documentation',
      [author], 1)
 ]
 
@@ -321,8 +321,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'SBML2PYODE', 'SBML2PYODE Documentation',
-     author, 'SBML2PYODE', 'One line description of project.',
+    (master_doc, 'SBMLTOODEPY', 'SBMLTOODEPY Documentation',
+     author, 'SBMLTOODEPY', 'One line description of project.',
      'Miscellaneous'),
 ]
 
