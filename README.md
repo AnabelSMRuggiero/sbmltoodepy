@@ -49,11 +49,9 @@ Models from the following papers were used to develop the model and are included
 
 [Zi, Zhike, et al. "Quantitative analysis of transient and sustained transforming growth factor‐β signaling dynamics." Molecular systems biology 7.1 (2011).][12]
 
-For more information about this package, see **Insert link to documentation here**
+For more information about this package, [click here](https://sbmltoodepy.readthedocs.io/en/latest/)
 
 For this project's github repository, [click here](https://github.com/SMRuggiero/sbmltopyode)
-
-For the publication associated with this package, see **Insert link to publication here**
 
 [1]: https://www.numpy.org/ "NumPy"
 [2]: https://www.scipy.org/ "SciPy"
