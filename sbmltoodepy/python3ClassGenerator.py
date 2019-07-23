@@ -154,7 +154,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     #print(rateParams)
     #print(stoichCoeffMat)
                 
-    outputFile.write("from sbmltopyode.SBMLModelClasses import *\n")
+    outputFile.write("from sbmltoodepy.SBMLModelClasses import *\n")
     outputFile.write("from scipy.integrate import odeint\n")
     outputFile.write("import numpy as np\n")
     outputFile.write("import operator\n")
@@ -183,23 +183,29 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                 outputFile.write("\t\tself.s[\'" + speciesId + "\']._modifiedBy = " + rule.Id + "\n")
     
                 
-    outputFile.write("\n\t\tself.r = {} #Dictionary of reactiions\n")
+    outputFile.write("\n\t\tself.r = {} #Dictionary of reactions\n")
     for reactionId in reactions:
-        outputFile.write("\t\tself.r[\'" + reactionId + "\'] = " + reactionId + "(self, SBMLMetadata('" + reactions[reactionId].name + "'))\n")
+        outputFile.write("\t\tself.r[\'" + reactionId + "\'] = " + reactionId + "(self)\n")
     
     outputFile.write("\t\tself.time = 0\n\n")
     
-    outputFile.write("\t\tself.reactionMetadata = {")
-    commaFlag = 0
-    for reactionId in reactions:
-        if commaFlag == 0:
-            commaFlag = 1
-            outputFile.write("\n\t\t")
-        else:
-            outputFile.write(",\n\t\t")
-        outputFile.write("self.Reaction" + reactionId + ": SBMLMetadata('" + reactions[reactionId].name + "')")
-    outputFile.write("\n\t\t}\n")
-        
+    outputFile.write("\n\t\tself.f = {} #Dictionary of function definitions\n")
+    for functionId in functions:
+        outputFile.write("\t\tself.f[\'" + functionId + "\'] = " + functionId + "(self)\n")
+    
+    outputFile.write("\t\tself.time = 0\n\n")
+    
+#    outputFile.write("\t\tself.reactionMetadata = {")
+#    commaFlag = 0
+#    for reactionId in reactions:
+#        if commaFlag == 0:
+#            commaFlag = 1
+#            outputFile.write("\n\t\t")
+#        else:
+#            outputFile.write(",\n\t\t")
+#        outputFile.write("self.Reaction" + reactionId + ": SBMLMetadata('" + reactions[reactionId].name + "')")
+#    outputFile.write("\n\t\t}\n")
+#        
     outputFile.write('\t\tself.AssignmentRules()\n\n')
     
     outputFile.write("\n\n")
@@ -258,7 +264,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                 elif variable[0] in mathFuncs:
                     returnRHS += mathFuncs[variable[0]]
                 elif variable[0] in functions:
-                    returnRHS += objectText + '.' + variable[0]
+                    returnRHS += objectText + '.f[\'' + variable[0] + '\']'
                 elif variable[0] in extendedParams:
                     if objectText == "self":
                         returnRHS += variable[0]
@@ -374,28 +380,28 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         
     outputFile.write("\t\treturn\n\n")
         
-    for functionId in functions:
-        arguments = functions[functionId].arguments
-        argumentString = ""
-        for i in range(len(arguments)):
-            argumentString += arguments[i]
-            if i != len(arguments) - 1:
-                argumentString += ", "
+#    for functionId in functions:
+#        arguments = functions[functionId].arguments
+#        argumentString = ""
+#        for i in range(len(arguments)):
+#            argumentString += arguments[i]
+#            if i != len(arguments) - 1:
+#                argumentString += ", "
+#        
+#        outputFile.write("\tdef " + functionId + "(self, " + argumentString + "):\n")
+#        outputFile.write("\t\treturn " + functions[functionId].mathString.replace("^", "**") + "\n")
         
-        outputFile.write("\tdef " + functionId + "(self, " + argumentString + "):\n")
-        outputFile.write("\t\treturn " + functions[functionId].mathString.replace("^", "**") + "\n")
-        
-    for reactionId in reactions:
-        outputFile.write("\tdef Reaction" + str(reactionId) + "(self):\n\n")
-
-        rxnParameters = []
-        for param in reactions[reactionId].rxnParameters:
-            outputFile.write("\t\t" + param[0] + " = " + str(param[1]) + "\n")
-            rxnParameters.append(param[0])
-			
-        rateLaw = ParseRHS(reactions[reactionId].rateLaw, rxnParameters)
-           
-        outputFile.write('\t\treturn ' + rateLaw + '\n\n')
+#    for reactionId in reactions:
+#        outputFile.write("\tdef Reaction" + str(reactionId) + "(self):\n\n")
+#
+#        rxnParameters = []
+#        for param in reactions[reactionId].rxnParameters:
+#            outputFile.write("\t\t" + param[0] + " = " + str(param[1]) + "\n")
+#            rxnParameters.append(param[0])
+#			
+#        rateLaw = ParseRHS(reactions[reactionId].rateLaw, rxnParameters)
+#           
+#        outputFile.write('\t\treturn ' + rateLaw + '\n\n')
 
     rateRuleLHSVars = []
     for key, rateRule in rateRules.items():
@@ -489,7 +495,11 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         outputFile.write('\tdef __init__(self, parent, metadata = None):\n\n')
         outputFile.write('\t\tself.parent = parent\n')
         outputFile.write('\t\tself.p = {}\n')
-        outputFile.write('\t\tself.metadata = metadata\n\n')
+        outputFile.write('\t\tif metadata:\n')
+        outputFile.write('\t\t\tself.metadata = metadata\n')
+        outputFile.write('\t\telse:\n')
+        outputFile.write("\t\t\tself.metadata = SBMLMetadata('" + reactions[key].name + "')\n")
+        
         for param in reactions[key].rxnParameters:
             outputFile.write("\t\tself.p[\'" + param[0] + "\'] = Parameter(" + str(param[1]) + ", '" + param[0] + "')\n")
             #"\t\tself.p[\'" + paramId + "\'] = Parameter(" + str(parameters[paramId].value)+ ", "+ paramId + ", " + str(parameters[paramId].isConstant) +")\n"
@@ -506,7 +516,10 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         outputFile.write('class ' + key + ':\n\n')
         outputFile.write('\tdef __init__(self, parent, metadata = None):\n\n')
         outputFile.write('\t\tself.parent = parent\n')
-        outputFile.write('\t\tself.metadata = metadata\n\n')
+        outputFile.write('\t\tif metadata:\n')
+        outputFile.write('\t\t\tself.metadata = metadata\n')
+        outputFile.write('\t\telse:\n')
+        outputFile.write("\t\t\tself.metadata = SBMLMetadata('" + functions[key].name + "')\n")
 
         arguments = functions[key].arguments
         argumentString = ""
