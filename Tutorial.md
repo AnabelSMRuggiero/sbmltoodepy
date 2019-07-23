@@ -72,3 +72,14 @@ The method updates the value of each model component and the time member. There 
 ```python
 modelInstance.RunSimulation(1, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
+
+An important thing to note is that the model only keeps values for the current time. If you wish to graph the evolution of a species with respect to time, the concentration and time will need to be sampled at the appropriate time points.
+
+```python
+times = []
+concentrations = []
+for i in range(100):
+	modelInstance.RunSimulation(1)
+	times.append(modelInstance.time)
+	concentrations.append(modelInstance.s['speciesId'].concentration)
+```
