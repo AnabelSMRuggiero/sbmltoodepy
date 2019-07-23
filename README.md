@@ -11,7 +11,7 @@ The parameters are:
 * inputFilePath: The file path of the SBML model.
 * jsonFilePath: An optional file path that if provided is where the function will create a json file containing all of the model elements. If not provided, a json file will not be created.
 * outputFilePath: An optional file path of where the python model implementation will be created. If not provided, the output path will be assumedtobe the same as the input, but with a .py extension.
-* className: The name of the class implementing the sbml model.
+* className: The name of the class defined by the file created by this function.
 
 
 This creates a new python file containing a class implementing the SBML model. 
@@ -22,7 +22,9 @@ model = SBMLmodel()
 model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
 
-The following python packages were used in this project:
+Please see Tutorial.md for more information.
+
+The following python packages were used in this project and are needed to generate and run python models:
 * [NumPy][1]
 * [SciPy][2]
 * [libSBML][3]
