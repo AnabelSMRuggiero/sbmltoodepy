@@ -50,9 +50,14 @@ def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = Non
         
     if outputFilePath == None:
         if len(inputFilePath.split('.')) > 1:
-            outputFilePath = inputFilePath.split('.')[0:-1] + '.py'
+            
+            if len(inputFilePath.split('.')) = 2 and inputFilePath[0] == '.':
+                #explicit relative path with no extension
+                outputFilePath = inputFilePath + '.py'
+            else:
+                outputFilePath = inputFilePath.split('.')[0:-1] + '.py'
         else:
-            #Guess they entered a file with no extension here
+            #implicit file path with no extension
             outputFilePath = inputFilePath + '.py'
         
     modelData = ParseSBMLFile(inputFilePath)
