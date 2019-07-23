@@ -9,7 +9,7 @@ import re
 import numpy as np
 import sys
 
-from sbmltoodepy.ModelDataClasses import *
+from sbmltoodepy.dataclasses import *
 
             
 def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
@@ -154,7 +154,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     #print(rateParams)
     #print(stoichCoeffMat)
                 
-    outputFile.write("from sbmltoodepy.SBMLModelClasses import *\n")
+    outputFile.write("from sbmltoodepy.modelclasses import *\n")
     outputFile.write("from scipy.integrate import odeint\n")
     outputFile.write("import numpy as np\n")
     outputFile.write("import operator\n")

@@ -1,2 +1,2 @@
 name = "sbmltopyode"
-from .ParseAndGenerate import ParseAndCreateModel
+from .utilities import ParseAndCreateModel

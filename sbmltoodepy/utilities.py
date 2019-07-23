@@ -5,11 +5,11 @@ Created on Fri Mar 15 07:59:59 2019
 @author: Steve
 """
 
-from sbmltoodepy.SBMLparser import ParseSBMLFile
-from sbmltoodepy.python3ClassGenerator import GenerateModel
+from sbmltoodepy.parse import ParseSBMLFile
+from sbmltoodepy.modulegeneration import GenerateModel
 import sys
 import os
-from sbmltoodepy.ModelDataClasses import *
+from sbmltoodepy.dataclasses import *
 
 def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = None, className = "SBMLmodel"):
     """
@@ -49,7 +49,11 @@ def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = Non
 #        jsonFileName = inputFileName.split('.')[0] + '.json'
         
     if outputFilePath == None:
-        outputFilePath = inputFilePath.split('.')[0] + '.py'
+        if len(inputFilePath.split('.')) > 1:
+            outputFilePath = inputFilePath.split('.')[0:-1] + '.py'
+        else:
+            #Guess they entered a file with no extension here
+            outputFilePath = inputFilePath + '.py'
         
     modelData = ParseSBMLFile(inputFilePath)
     if not jsonFilePath == None: 

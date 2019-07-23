@@ -1,9 +1,9 @@
-.. SBML2PYODE documentation master file, created by
+.. SBMLTOODEPY documentation master file, created by
    sphinx-quickstart on Tue Jun  4 08:29:20 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SBML2PYODE's documentation!
+Welcome to SBMLtoODEpy's documentation!
 ======================================
 
 Contents:
@@ -16,7 +16,7 @@ Contents:
    
    DataClasses
    ModelClasses
-   Parser
+   Parse
 
 
 
