@@ -22,7 +22,7 @@ model = SBMLmodel()
 model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
 
-Please see Tutorial.md for more information.
+For more information, [click here to see the tutorial.](https://github.com/SMRuggiero/sbmltoodepy/blob/master/Tutorial.md)
 
 The following python packages were used in this project and are needed to generate and run python models:
 * [NumPy][1]
