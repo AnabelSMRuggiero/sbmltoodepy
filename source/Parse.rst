@@ -2,6 +2,8 @@
  Parse and Generate
 ====================
 
+.. autofunction:: utilities.TestPackage
+
 .. autofunction:: utilities.ParseAndCreateModel
 
 .. autofunction:: parse.ParseSBMLFile

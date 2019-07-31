@@ -8,6 +8,12 @@
 .. autoclass:: modelclasses.Compartment
    :members:
    
+.. autoclass:: modelclasses.Parameter
+   :members:
+
+.. autoclass:: modelclasses.Model
+   :members:   
+
 .. autofunction:: modelclasses.Piecewise
    
 .. toctree::
