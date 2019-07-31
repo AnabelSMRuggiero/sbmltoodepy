@@ -1,5 +1,7 @@
 # SBMLtoODEpy
 
+## Installation Instructions
+
 The simpliest use of this package is to use the ParseAndGenerate function to quickly create a python implementation of an SBML model.
 
 ```python
@@ -22,14 +24,14 @@ model = SBMLmodel()
 model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
 
-For more information, [click here to see the tutorial.](https://github.com/SMRuggiero/sbmltoodepy/blob/master/Tutorial.md)
+
 
 The following python packages were used in this project and are needed to generate and run python models:
 * [NumPy][1]
 * [SciPy][2]
 * [libSBML][3]
 
-Models from the following papers were used to develop the model and are included as examples:
+Models from the following papers were used to develop and test the package and are included as examples:
 
 [Borisov, Nikolay, et al. "Systems-level interactions between insulin–EGF networks amplify mitogenic signaling." Molecular systems biology 5.1 (2009).][4]
 
@@ -49,9 +51,17 @@ Models from the following papers were used to develop the model and are included
 
 [Zi, Zhike, et al. "Quantitative analysis of transient and sustained transforming growth factor‐β signaling dynamics." Molecular systems biology 7.1 (2011).][12]
 
-For more information about this package, [click here](https://sbmltoodepy.readthedocs.io/en/latest/)
+The above models are additionally located in [this projects github repository.](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files)
 
-For this project's github repository, [click here](https://github.com/SMRuggiero/sbmltopyode)
+For more information on using this package, [click here to see the tutorial.](https://github.com/SMRuggiero/sbmltoodepy/blob/master/Tutorial.md)
+
+For more information on SBML, including specifications and other software that supports SBML, [click here for the SBML web site](http://sbml.org/Main_Page)
+
+For a good source of SBML models, [the BioModels repository is a great place to search.](https://www.ebi.ac.uk/biomodels/)
+
+For this project's documentation, [click here.](https://sbmltoodepy.readthedocs.io/en/latest/)
+
+For this project's github repository, [click here.](https://github.com/SMRuggiero/sbmltopyode)
 
 [1]: https://www.numpy.org/ "NumPy"
 [2]: https://www.scipy.org/ "SciPy"

@@ -53,11 +53,33 @@ print(modelInstance.s['speciesId'].concentration)
 print(modelInstance.s['speciesId'].amount)
 ```
 
-The last part of the model's state is time.
+Function definitions and reactions are stored in a similar manner.
+Currently, rules and initial assignments are not handled the same way.
+Rate rules are bound methods of the model class that are called along side reactions, and assignment rules and initial assignments are implemented through a method of themodel class, AssignmentRules().
+Algebraic rules are completely unsupported currently.
+
+In SBML, each model component can have both an id and a name. 
+Each of the dictionaries containing compartments, parameters, species, reations, and function definitions can be searched by the component name using the appropriate method.
+
+```python
+modelInstance.SearchParametersByName('parameter name', suppress = False)
+modelInstance.SearchCompartmentsByName('compartment name', suppress = False)
+modelInstance.SearchSpeciesByName('species name', suppress = False)
+modelInstance.earchReactionsByName('reaction name', suppress = False)
+modelInstance.SearchFunctionsByName('function name', suppress = False)
+```
+
+In SBML, there is no guarantee that names are unique (each component in a model has a unique id). If a single component matches, a list with the component's id and object are returned.
+If multiple components match, then a nested list is returned. Each element in the list is a list with a component's id and object.
+Lastly, if no match is found, the behavior of the function depends on the keyward argument suppress. If suppress is False, an exception is raised. If suppress is True, then an empty list is returned.
+
+The last part of the model's state is simulation time.
 
 ```python
 print(modelInstance.time)
 ```
+
+The time member of the class is the current simulation time for the model. The units of time in the model is treated as arbitrary by the package. The units for time is dependent on the units of parameters set by the modeler. This package does not check if the units in a model are consistent.
 
 ## Simulating the model
 
@@ -83,3 +105,5 @@ for i in range(100):
 	times.append(modelInstance.time)
 	concentrations.append(modelInstance.s['speciesId'].concentration)
 ```
+
+The resulting data can then be graphed using any method you would like. For graphing directly in python, [matplotlib is a good option.](https://matplotlib.org/)
