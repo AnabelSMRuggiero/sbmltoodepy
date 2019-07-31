@@ -4,14 +4,14 @@ with open("README.md", "r", encoding = "utf8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="sbmltoodepy_SMRuggiero",
-    version="0.0.3",
-    author="SMR",
+    name="sbmltoodepy",
+    version="1.0.1",
+    author="Steve M Ruggiero, Ashlee N Ford Versypt",
     author_email="SteveMRuggiero@gmail.com",
-    description="A small example package",
+    description="A package that creates a python implementation of an SBML model.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/SMRuggiero/sbmltoodepy",
     packages=setuptools.find_packages(),
     package_data = {
         'sbmltoodepy' : ['sbml_files/*.xml']
