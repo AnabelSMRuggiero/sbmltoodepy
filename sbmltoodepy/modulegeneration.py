@@ -160,21 +160,21 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     outputFile.write("import operator\n")
     outputFile.write("import math\n\n")
     
-    outputFile.write("class " + objectName +":\n\n")
+    outputFile.write("class " + objectName +"(Model):\n\n")
     
     outputFile.write("\tdef __init__(self):\n\n")
     outputFile.write("\t\tself.p = {} #Dictionary of model parameters\n")
     for paramId in parameters:
-        outputFile.write("\t\tself.p[\'" + paramId + "\'] = Parameter(" + str(parameters[paramId].value)+ ", \'"+ paramId + "\', " + str(parameters[paramId].isConstant) +")\n")
+        outputFile.write("\t\tself.p[\'" + paramId + "\'] = Parameter(" + str(parameters[paramId].value)+ ", \'"+ paramId + "\', " + str(parameters[paramId].isConstant) + ', metadata = SBMLMetadata("' + parameters[paramId].name +'"))\n')
         
     outputFile.write("\n\t\tself.c = {} #Dictionary of compartments\n")
     for compartmentId in compartments:
-        outputFile.write("\t\tself.c[\'" + compartmentId + "\'] = Compartment(" + str(compartments[compartmentId].size) + ", " + str(compartments[compartmentId].dimensionality)+ ", " + str(compartments[compartmentId].isConstant) + ")\n")
+        outputFile.write("\t\tself.c[\'" + compartmentId + "\'] = Compartment(" + str(compartments[compartmentId].size) + ", " + str(compartments[compartmentId].dimensionality)+ ", " + str(compartments[compartmentId].isConstant) + ', metadata = SBMLMetadata("' + compartments[compartmentId].name +'"))\n')
         
     outputFile.write("\n\t\tself.s = {} #Dictionary of chemical species\n")
     for speciesId in species:
-        outputFile.write("\t\tspeciesMetadata = SBMLMetadata('" + species[speciesId].name +"')\n")
-        outputFile.write("\t\tself.s[\'" + speciesId + "\'] = Species(" + str(species[speciesId].value) + ", '" + species[speciesId].valueType + "', self.c['" + species[speciesId].compartment + "'], " + str(species[speciesId].hasOnlySubstanceUnits) + ", constant = " + str(species[speciesId].isConstant) + ")\n")
+#        outputFile.write("\t\tspeciesMetadata = SBMLMetadata('" + species[speciesId].name +"')\n")
+        outputFile.write("\t\tself.s[\'" + speciesId + "\'] = Species(" + str(species[speciesId].value) + ", '" + species[speciesId].valueType + "', self.c['" + species[speciesId].compartment + "'], " + str(species[speciesId].hasOnlySubstanceUnits) + ", constant = " + str(species[speciesId].isConstant) + ', metadata = SBMLMetadata("' + species[speciesId].name +'"))\n')
         for key, rule in assignmentRules.items():
             if rule.variable == speciesId:
                 outputFile.write("\t\tself.s[\'" + speciesId + "\']._modifiedBy = " + rule.Id + "\n")
@@ -187,7 +187,6 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     for reactionId in reactions:
         outputFile.write("\t\tself.r[\'" + reactionId + "\'] = " + reactionId + "(self)\n")
     
-    outputFile.write("\t\tself.time = 0\n\n")
     
     outputFile.write("\n\t\tself.f = {} #Dictionary of function definitions\n")
     for functionId in functions:
@@ -208,8 +207,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
 #        
     outputFile.write('\t\tself.AssignmentRules()\n\n')
     
-    outputFile.write("\n\n")
-    outputFile.write("\tdef AssignmentRules(self):\n\n")
+
     #These functions are defined here due to reading variables in the parent function's namespace
     #These are not intended to be used elsewhere
     def ParseLHS(rawLHS):
@@ -242,7 +240,6 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
             #ToDo: check for function calls
             variables.append([rawRHS[match.start():match.end()], match.span()])
             
-        #rule[1] contains the right hand side
         returnRHS = ''
         oldSpan = None
         if variables != []:
@@ -284,6 +281,10 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
             returnRHS = rawRHS
 		
         return returnRHS
+    
+    outputFile.write("\n\n")
+    outputFile.write("\tdef AssignmentRules(self):\n\n")
+    #Here's where the assignment rules and initial assignments are printed. This may be changes to a class based implementation later.
 
     ruleDefinedVars = [rule.variable for rule in assignmentRules.values()]
     for key, assignment in initialAssignments.items():
@@ -498,7 +499,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         outputFile.write('\t\tif metadata:\n')
         outputFile.write('\t\t\tself.metadata = metadata\n')
         outputFile.write('\t\telse:\n')
-        outputFile.write("\t\t\tself.metadata = SBMLMetadata('" + reactions[key].name + "')\n")
+        outputFile.write('\t\t\tself.metadata = SBMLMetadata("' + reactions[key].name + '")\n')
         
         for param in reactions[key].rxnParameters:
             outputFile.write("\t\tself.p[\'" + param[0] + "\'] = Parameter(" + str(param[1]) + ", '" + param[0] + "')\n")
@@ -519,7 +520,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         outputFile.write('\t\tif metadata:\n')
         outputFile.write('\t\t\tself.metadata = metadata\n')
         outputFile.write('\t\telse:\n')
-        outputFile.write("\t\t\tself.metadata = SBMLMetadata('" + functions[key].name + "')\n")
+        outputFile.write('\t\t\tself.metadata = SBMLMetadata("' + functions[key].name + '")\n')
 
         arguments = functions[key].arguments
         argumentString = ""

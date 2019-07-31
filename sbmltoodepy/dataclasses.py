@@ -41,6 +41,8 @@ class ModelData:
     -------
     DumpToJSON(filePath)
     LoadFromJSON(filePath)
+        These methods are used for creating a JSON file and for creating an instance of ModelData from a JSON file, respectively.
+        Note that LoadFromJSON is a class method that creates a new instance of ModelData.
 
     
     """

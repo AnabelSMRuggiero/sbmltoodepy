@@ -51,7 +51,7 @@ def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = Non
     if outputFilePath == None:
         if len(inputFilePath.split('.')) > 1:
             
-            if len(inputFilePath.split('.')) = 2 and inputFilePath[0] == '.':
+            if len(inputFilePath.split('.')) == 2 and inputFilePath[0] == '.':
                 #explicit relative path with no extension
                 outputFilePath = inputFilePath + '.py'
             else:
@@ -73,6 +73,30 @@ def PrintAmounts(model):
     [print(key + ' Amount: ' + str(model.s[key].amount)) for key in model.s]
     
 def TestPackage():
+    
+    """
+    
+    This function serves to test the package.
+    
+    
+    
+    Notes
+    -----
+    The function raises a warning about trying to set a constant species and 7 numbers.
+    
+    
+    1.279495335622681e-06
+    9.80872335938185e-10
+    2.8468248003432684e-10
+    1.330807667219949e-07
+    1.420410743795493e-07
+    4.0569605652344643e-07
+    2.6611731901762497e-05
+    
+    These are the average relative errors for species, parameters, and compartments between the models generated in this function and results calculated by COPASI
+    for seven different models.
+    
+    """
 #    import os
 #    print(os.getcwd())
     dirname = os.path.dirname(__file__)

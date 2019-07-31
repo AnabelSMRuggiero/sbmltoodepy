@@ -89,6 +89,7 @@ class Compartment:
            warnings.warn("Attempted to set a constant parameter", Warning) 
         
 
+#Currently unused
 class Reaction:
     
     def __init__(self, metadata = None):
@@ -217,6 +218,27 @@ class SBMLMetadata:
         self.name = name
         
 class Parameter():
+    """This class represents a parameter as defined by SBML.
+    
+    Parameters
+    ----------
+    value : float
+        Sets either the value of the parameter.
+        
+    Id: str
+        The Id of the parameter
+				
+    constant : bool
+        If true, any attempts to modify the value member fail.
+    
+    metadata : SBMLMetadata
+        An object containing information about the model component stored in the SBML file
+        
+    Attributes
+    ----------
+    metadata : SBMLMetadata
+        Additional information about the species contained in the SBML model
+    """
     
     def __init__(self, value, Id, constant = False, units = None, metadata = None):
         self._value = value
@@ -239,6 +261,61 @@ class Parameter():
 #    param = Parameter(1, constant = True)
 #    def __init__(self, value):
 #        self.param = Parameter(value, constant = True)
+           
+class Model():
+    """This class is inhereted by model classes generated .
+    
+        
+    Methods
+    -------
+    SearchParametersByName(name, suppress = False)
+    
+    SearchCompartmentsByName(name, suppress = False)
+    
+    SearchSpeciesByName(name, suppress = False)
+    
+    SearchReactionsByName(name, suppress = False)
+    
+    SearchFunctionsByName(name, suppress = False)
+    
+    SearchComponentsByName(componentDict, name, suppress = False)
+        Searches a dictionary of SBML model components for any components that match the name argument.
+        This method raises an exception if the suppress keyword argument is False and a match is not found.
+        The other search methods (eg. SearchParametersByName) serve as wrappers for this method.
+    """
+    
+#    def SearchElementsByName():
+#        pass
+    
+    def SearchParametersByName(self, name, suppress = False):
+        return self.SearchComponentsByName(self.p, name, suppress)
+        
+    def SearchCompartmentsByName(self, name, suppress = False):
+        return self.SearchComponentsByName(self.c, name, suppress)
+        
+    def SearchSpeciesByName(self, name, suppress = False):
+        return self.SearchComponentsByName(self.s, name, suppress)
+        
+    def SearchReactionsByName(self, name, suppress = False):
+        return self.SearchComponentsByName(self.r, name, suppress)
+        
+    def SearchFunctionsByName(self, name, suppress = False):
+        return self.SearchComponentsByName(self.f, name, suppress)
+        
+    def SearchComponentsByName(self, componentDict, name, suppress = False):
+        returnList = []
+        for key, component in componentDict.items():
+            if component.metadata.name == name:
+                returnList.append([key,component])
+                
+        if returnList == [] and not suppress:
+            raise Exception('No matching name found')
+                    
+        if len(returnList) == 1:
+            return returnList[0]
+        else:
+            return returnList
+    
 
 def Piecewise(*args):
     #    Piecewise(expression1, condition1 [, expression2, condition2 [,...]] [, otherwise])
@@ -297,16 +374,16 @@ def Piecewise(*args):
     else:
         raise Exception('Piecewise called with dependant variable outside of range or Otherwise not provided.')
 
-def SearchReactionByName(rxnDict, name, suppress = False):
-    returnList = []
-    for key, metadata in rxnDict.items():
-        if metadata.name == name:
-            returnList.append(key)
-    
-    if returnList == [] and not suppress:
-        raise Exception('No matching name found')
-    
-    if len(returnList) == 1:
-        return returnList[0]
-    else:
-        return returnList
+#def SearchReactionByName(rxnDict, name, suppress = False):
+#    returnList = []
+#    for key, metadata in rxnDict.items():
+#        if metadata.name == name:
+#            returnList.append(key)
+#    
+#    if returnList == [] and not suppress:
+#        raise Exception('No matching name found')
+#    
+#    if len(returnList) == 1:
+#        return returnList[0]
+#    else:
+#        return returnList
