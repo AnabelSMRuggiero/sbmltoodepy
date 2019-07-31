@@ -5,7 +5,7 @@
 The fastest way to create a Python model using SBMLtoODEpy is to open a Python interpreter in the same folder as the SBML file. Then, run the following lines of code using the name of your model.
 
 ```python
-import smbltoodepy
+import sbmltoodepy
 ParseAndCreateModel("YourModelNameHere.xml")
 ```
 
@@ -26,6 +26,31 @@ The last optional keyword argument of ParseAndCreateModel() is jsonFilePath. If 
 ```python
 ParseAndCreateModel("YourModelNameHere.xml", jsonFilePath = "YourModelNameHere.json", outputFilePath = "PythonFile.py", className = "ModelName")
 ```
+
+In reality, creating a Python model with SBMLtoODEpy is a two step process that can be broken up.
+
+```python
+modelData = sbmltoodepy.parse.ParseSBMLFile("YourModelNameHere.xml")
+GenerateModel(modelData, "PythonFile.py", objectName = "ModelName")
+```
+
+The function ParseAndCreateModel serves as a wrapper for two other functions, ParseSBMLFile and GenerateModel.
+ParseSBMLFile returns an instance of the ModelData class with all of the components pulled from the model.
+While you can use that instance as input to GenerateModel, there is another feature of SBMLtoODEpy that the ModelData class provides.
+The ModelData class has a method, DumpToJSON, that generates a JSON file with the model components.
+
+```python
+modelData.DumpToJSON("YourModelNameHere.json")
+```
+
+A JSON file created from the DumpToJSON method can be used a create a new instance of the ModelData class.
+
+```python
+newInstance = sbmltoodepy.dataclasses.ModelData.LoadFromJSON("YourModelNameHere.json")
+```
+
+A possible use case for this would be to generate a JSON file from an SBML model, change the JSON file, which is more human readable than an SBML file, and use the changed JSON file to create the Python model.
+
 
 ## Exploring a newly created Python model
 
