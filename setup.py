@@ -5,7 +5,7 @@ with open("README.md", "r", encoding = "utf8") as fh:
 
 setuptools.setup(
     name="sbmltoodepy_SMRuggiero",
-    version="0.0.2",
+    version="0.0.3",
     author="SMR",
     author_email="SteveMRuggiero@gmail.com",
     description="A small example package",
@@ -18,7 +18,8 @@ setuptools.setup(
     },
     install_requires=[
             'python-libsbml',
-            'numpy'
+            'numpy',
+            'scipy'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
