@@ -1,11 +1,11 @@
 # SBMLtoODEpy
 
-## Installation Instructions
+## Overview
 
 The simpliest use of this package is to use the ParseAndGenerate function to quickly create a python implementation of an SBML model.
 
 ```python
-import smbltoodepy
+import sbmltoodepy
 ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = None, className = "SBMLmodel")
 ```
 
@@ -24,7 +24,34 @@ model = SBMLmodel()
 model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
 
+## Installation Instructions
 
+SBMLtoODEpy can be downloaded using pip
+```
+pip install sbmltoodepy
+```
+
+To test the package, use the TestPackage function.
+
+```python
+import sbmltoodepy
+sbmltoodepy.utilities.TestPackage()
+```
+
+The function raises a warning about trying to set a constant species and 7 numbers.
+    
+    
+1.279495335622681e-06
+9.80872335938185e-10
+2.8468248003432684e-10
+1.330807667219949e-07
+1.420410743795493e-07
+4.0569605652344643e-07
+2.6611731901762497e-05
+    
+These are the average relative errors for species, parameters, and compartments between the models generated in this function and results calculated by COPASI for seven different models.
+
+## Acknowledgements
 
 The following python packages were used in this project and are needed to generate and run python models:
 * [NumPy][1]
