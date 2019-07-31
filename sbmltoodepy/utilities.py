@@ -85,18 +85,16 @@ def TestPackage():
     The function raises a warning about trying to set a constant species and 7 numbers.
     
     1.279495335622681e-06
-    
-    9.80872335938185e-10
-    
-    2.8468248003432684e-10
-    
+
+    9.427471779552446e-10
+
     1.330807667219949e-07
-    
-    1.420410743795493e-07
-    
+
+    9.797580656559267e-08
+
     4.0569605652344643e-07
-    
-    2.6611731901762497e-05
+
+    2.661173190172687e-05
     
     These are the average relative errors for species, parameters, and compartments between the models generated in this function and results calculated by COPASI
     for seven different models.
@@ -166,18 +164,18 @@ def TestPackage():
     borisovIndividualRelativeError = [abs(borisovSpeciesConcentrations[i] - borisovActualConcentrations[i])/abs(borisovActualConcentrations[i] + sys.float_info.epsilon) for i in range(len(borisovActualConcentrations))]
     borisovAverageRelativeError = sum(borisovIndividualRelativeError)/len(borisovIndividualRelativeError)
     
-    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Cizmeci2013_insulin_angiotensin_II.xml'),
-                        outputFilePath = os.path.join(dirname, 'sbml_files/Cizmeci2013.py'), className = 'Cizmeci2013')
-    
-    from .sbml_files.Cizmeci2013 import Cizmeci2013
-    
-    model = Cizmeci2013()
-    model.RunSimulation(1)
-    
-    cizmeciSpeciesConcentrations = [model.s['s1'].amount, model.s['s3'].amount, model.s['s4'].amount, model.s['s5'].amount, model.s['s6'].amount, model.s['s8'].amount, model.s['s7'].amount, model.s['s9'].amount, model.s['s10'].amount, model.s['s2'].amount]
-    cizmeciActualConcentrations = [0.2678291612, 0.0007303083883, 0.09281289032, 1.149877283, 0.1342254593, 0.1120818134, 1.968585388e-5, 0.01150442171, 0.001418274329, 1.234191257]
-    cizmeciIndividualRelativeError = [abs(cizmeciSpeciesConcentrations[i] - cizmeciActualConcentrations[i])/abs(cizmeciActualConcentrations[i]) for i in range(len(cizmeciActualConcentrations))]
-    cizmeciAverageRelativeError = sum(cizmeciIndividualRelativeError)/len(cizmeciIndividualRelativeError)    
+#    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Cizmeci2013_insulin_angiotensin_II.xml'),
+#                        outputFilePath = os.path.join(dirname, 'sbml_files/Cizmeci2013.py'), className = 'Cizmeci2013')
+#    
+#    from .sbml_files.Cizmeci2013 import Cizmeci2013
+#    
+#    model = Cizmeci2013()
+#    model.RunSimulation(1)
+#    
+#    cizmeciSpeciesConcentrations = [model.s['s1'].amount, model.s['s3'].amount, model.s['s4'].amount, model.s['s5'].amount, model.s['s6'].amount, model.s['s8'].amount, model.s['s7'].amount, model.s['s9'].amount, model.s['s10'].amount, model.s['s2'].amount]
+#    cizmeciActualConcentrations = [0.2678291612, 0.0007303083883, 0.09281289032, 1.149877283, 0.1342254593, 0.1120818134, 1.968585388e-5, 0.01150442171, 0.001418274329, 1.234191257]
+#    cizmeciIndividualRelativeError = [abs(cizmeciSpeciesConcentrations[i] - cizmeciActualConcentrations[i])/abs(cizmeciActualConcentrations[i]) for i in range(len(cizmeciActualConcentrations))]
+#    cizmeciAverageRelativeError = sum(cizmeciIndividualRelativeError)/len(cizmeciIndividualRelativeError)    
 
     ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Guyton1972_Angiotensin.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Guyton1972.py'), className = 'Guyton1972')
 
@@ -203,7 +201,7 @@ def TestPackage():
     kerkhovenIndividualRelativeError = [abs(kerkhovenSpeciesConcentrations[i] - kerkhovenActualConcentrations[i])/abs(kerkhovenActualConcentrations[i]) for i in range(len(kerkhovenActualConcentrations))]
     kerkhovenAverageRelativeError = sum(kerkhovenIndividualRelativeError)/len(kerkhovenIndividualRelativeError)     
     
-    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Lenbury2001_InsulinKineticsModel_B.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Lenbury2001.py'), className = 'Lenbury2001')
+#    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Lenbury2001_InsulinKineticsModel_B.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Lenbury2001.py'), className = 'Lenbury2001')
 
     # from Lenbury2001 import Lenbury2001
     
@@ -215,13 +213,13 @@ def TestPackage():
     # lenburyIndividualRelativeError = [abs(lenburySpeciesConcentrations[i] - lenburyActualConcentrations[i])/abs(lenburyActualConcentrations[i]) for i in range(len(lenburyActualConcentrations))]
     # lenburyAverageRelativeError = sum(lenburyIndividualRelativeError)/len(lenburyIndividualRelativeError)     
 
-    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Vizan2013_TGF_pathway_long_term_signaling.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Vizan2013.py'), className = 'Vizan2013')
-
-    from .sbml_files.Vizan2013 import Vizan2013
-
-    model = Vizan2013()
-    model.RunSimulation(1)
-    
+#    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Vizan2013_TGF_pathway_long_term_signaling.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Vizan2013.py'), className = 'Vizan2013')
+#
+#    from .sbml_files.Vizan2013 import Vizan2013
+#
+#    model = Vizan2013()
+#    model.RunSimulation(1)
+#    
     # vizanSpeciesConcentrations = []
     # vizanActualConcentrations = []
     # vizanIndividualRelativeError = [abs(vizanSpeciesConcentrations[i] - vizanActualConcentrations[i])/abs(vizanActualConcentrations[i]) for i in range(len(vizanActualConcentrations))]
@@ -257,7 +255,7 @@ def TestPackage():
 
     print(smallBoneAverageRelativeError)
     print(borisovAverageRelativeError)
-    print(cizmeciAverageRelativeError)
+#    print(cizmeciAverageRelativeError)
     print(guytonAverageRelativeError)
     print(kerkhovenAverageRelativeError)
     print(waughAverageRelativeError)
