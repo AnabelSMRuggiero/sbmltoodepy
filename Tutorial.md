@@ -144,7 +144,7 @@ for i in range(100):
 The results can then be graphed using any method you would like. For graphing directly in python, [matplotlib is a good option.](https://matplotlib.org/)
 
 ```python
-import import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 plt.plot(times,concentrations)
 ```
 
