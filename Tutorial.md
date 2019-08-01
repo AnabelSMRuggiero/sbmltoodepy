@@ -149,7 +149,7 @@ plt.plot(times,concentrations)
 ```
 
 ## Examples
-Models from the following papers were used to develop and test the package and are included as example SBML files in [this projects github repository.](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files)
+Models from the following papers were used to develop and test the package and are included as example SBML files in [the sbmltoodepy/sbml_files subdirectory.](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files)
 
 [Borisov, Nikolay, et al. "Systems-level interactions between insulin–EGF networks amplify mitogenic signaling." Molecular systems biology 5.1 (2009): 256.][1]
 
