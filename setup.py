@@ -5,7 +5,7 @@ with open("README.md", "r", encoding = "utf8") as fh:
 
 setuptools.setup(
     name="sbmltoodepy",
-    version="1.0.1",
+    version="1.0.2",
     author="Steve M Ruggiero, Ashlee N Ford Versypt",
     author_email="SteveMRuggiero@gmail.com",
     description="A package that creates a python implementation of an SBML model.",
