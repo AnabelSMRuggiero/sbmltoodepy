@@ -55,7 +55,10 @@ def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = Non
                 #explicit relative path with no extension
                 outputFilePath = inputFilePath + '.py'
             else:
-                outputFilePath = inputFilePath.split('.')[0:-1] + '.py'
+                outputFilePath = ''
+                for portion in inputFilePath.split('.')[0:-1]:
+                    outputFilePath += portion + '.'
+                outputFilePath += 'py'
         else:
             #implicit file path with no extension
             outputFilePath = inputFilePath + '.py'
