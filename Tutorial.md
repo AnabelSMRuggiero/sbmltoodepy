@@ -91,8 +91,10 @@ Currently, rules and initial assignments are not handled the same way.
 Rate rules are bound methods of the model class that are called alongside reactions, and assignment rules and initial assignments are implemented through a method of the model class, AssignmentRules().
 Algebraic rules are not completely supported currently.
 
-In SBML, each model component can have both an id and a name. 
-Each of the dictionaries containing compartments, parameters, species, reations, and function definitions can be searched by the component name using the appropriate method.
+In SBML, each model component can have both an id and a name, but only the id is required. 
+Each of the dictionaries containing compartments, parameters, species, reations, and function definitions can be searched by the component name using the appropriate method. Note that the original model must not have a blank metadata field for the corresponding entry for the search by name to yield any results. In SBML, there is no guarantee that names are unique (each component in a model does have a unique id). If a single component matches, a list with the component's id and object is returned.
+If multiple components match, then a nested list is returned. Each element in the list is a list with a component's id and object.
+Lastly, if no match is found, the behavior of the function depends on the keyward argument suppress. If suppress is False, an exception is raised. If suppress is True, then an empty list is returned.
 
 ```python
 modelInstance.SearchParametersByName('parameter name', suppress = False)
@@ -101,10 +103,6 @@ modelInstance.SearchSpeciesByName('species name', suppress = False)
 modelInstance.earchReactionsByName('reaction name', suppress = False)
 modelInstance.SearchFunctionsByName('function name', suppress = False)
 ```
-
-In SBML, there is no guarantee that names are unique (each component in a model has a unique id). If a single component matches, a list with the component's id and object are returned.
-If multiple components match, then a nested list is returned. Each element in the list is a list with a component's id and object.
-Lastly, if no match is found, the behavior of the function depends on the keyward argument suppress. If suppress is False, an exception is raised. If suppress is True, then an empty list is returned.
 
 The last part of the model's state is simulation time.
 
@@ -116,30 +114,39 @@ The time member of the class is the current simulation time for the model. The u
 
 ## Simulating the model
 
-The RunSimulation() method is used to step the model forward in time.
+The RunSimulation() method is used to step the ordinary differential equations (ODE) model forward in time by timeinterval. The method updates the value of each model component and the total elapsed simulation time over all calls to RunSimulation. 
 
 ```python
-modelInstance.RunSimulation(1)
+modelInstance.RunSimulation(timeinterval)
 ```
 
-The method updates the value of each model component and the time member. There are two keyword arguements, absoluteTolerance and relativeTolerance, which are for tuning the tolerances used to sole the model.
+There are two optional keyword arguments, absoluteTolerance and relativeTolerance, which are for tuning the tolerances used to solve the ODE model with lsoda.
 
 ```python
-modelInstance.RunSimulation(1, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
+modelInstance.RunSimulation(timeinterval, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 ```
 
 An important thing to note is that the model only keeps values for the current time. If you wish to graph the evolution of a species with respect to time, the concentration and time will need to be sampled at the appropriate time points.
 
 ```python
-times = []
-concentrations = []
+import numpy as np
+times = np.zeros(101)
+times[0] = modelInstance.time
+concentrations = np.zeros(101)
+concentrations[0] = modelInstance.s['speciesId'].concentration
+timeinterval = 1
 for i in range(100):
-	modelInstance.RunSimulation(1)
-	times.append(modelInstance.time)
-	concentrations.append(modelInstance.s['speciesId'].concentration)
+	modelInstance.RunSimulation(timeinterval)
+	times[i+1] = modelInstance.time
+	concentrations[i+1] = modelInstance.s['speciesId'].concentration
 ```
 
-The resulting data can then be graphed using any method you would like. For graphing directly in python, [matplotlib is a good option.](https://matplotlib.org/)
+The results can then be graphed using any method you would like. For graphing directly in python, [matplotlib is a good option.](https://matplotlib.org/)
+
+```python
+import import matplotlib.pyplot as plt
+plt.plot(times,concentrations)
+```
 
 ## Examples
 Models from the following papers were used to develop and test the package and are included as example SBML files in [this projects github repository.](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files)
