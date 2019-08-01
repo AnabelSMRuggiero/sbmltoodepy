@@ -132,3 +132,25 @@ for i in range(100):
 ```
 
 The resulting data can then be graphed using any method you would like. For graphing directly in python, [matplotlib is a good option.](https://matplotlib.org/)
+
+## Examples
+Models from the following papers were used to develop and test the package and are included as example SBML files in [this projects github repository.](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files)
+
+[Borisov, Nikolay, et al. "Systems-level interactions between insulin–EGF networks amplify mitogenic signaling." Molecular systems biology 5.1 (2009): 256.][1]
+
+[Guyton, Arthur C., Thomas G. Coleman, and Harris J. Granger. "Circulation: overall regulation." Annual Review of Physiology 34.1 (1972): 13-44.][2]
+
+[Kerkhoven, Eduard J., et al. "Handling uncertainty in dynamic models: the pentose phosphate pathway in Trypanosoma brucei." PLoS Computational Biology 9.12 (2013): e1003371.][3]
+
+[Smallbone, Kieran, and Bernard M. Corfe. "A mathematical model of the colon crypt capturing compositional dynamic interactions between cell types." International Journal of Experimental Pathology 95.1 (2014): 1-7.][4]
+
+[Waugh, Helen V., and Jonathan A. Sherratt. "Macrophage dynamics in diabetic wound dealing." Bulletin of Mathematical Biology 68.1 (2006): 197-207.][5]
+
+[Zi, Zhike, et al. "Quantitative analysis of transient and sustained transforming growth factor‐β signaling dynamics." Molecular Systems Biology 7.1 (2011): 492.][6]
+
+[1]: https://doi.org/10.1038/msb.2009.19
+[2]: https://doi.org/10.1146/annurev.ph.34.030172.000305
+[3]: https://doi.org/10.1371/journal.pcbi.1003371
+[4]: https://dx.doi.org/10.1111%2Fiep.12062
+[5]: https://doi.org/10.1007/s11538-005-9022-3
+[6]: https://doi.org/10.1038/msb.2011.22
