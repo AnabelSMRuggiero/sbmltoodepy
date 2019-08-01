@@ -65,7 +65,12 @@ The main components that make up the state of an SBML are compartments, paramete
 The key for each dictionary entry is the id, as defined by the SBML specification, for the component. By printing one of these dictionaries keys, you can see the id of each compartment, parameter, or species.
 
 ```python
+# get the dictionary keys for the IDs of the species in the model
 print(modelInstance.s.keys())
+# get the dictionary keys for the IDs of the compartments in the model
+print(modelInstance.c.keys())
+# get the dictionary keys for the IDs of the parameters in the model
+print(modelInstance.p.keys())
 ```
 
 The individual model elements are represented as instances of an appropriate class. Parameters are instances of the Parameter class, and the value member contains the parameters value.
