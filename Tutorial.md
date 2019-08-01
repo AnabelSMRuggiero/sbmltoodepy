@@ -30,7 +30,7 @@ sbmltoodepy.ParseAndCreateModel("YourModelNameHere.xml", jsonFilePath = "YourMod
 In reality, creating a Python model with SBMLtoODEpy is a two step process that can be broken up.
 
 ```python
-modelData = sbmltoodepy.parse.ParseSBMLFile("YourModelNameHere.xml")
+dataOfModel = sbmltoodepy.parse.ParseSBMLFile("YourModelNameHere.xml")
 sbmltoodepy.modulegeneration.GenerateModel(modelData, "PythonFile.py", objectName = "ModelName")
 ```
 
@@ -40,7 +40,7 @@ While you can use that instance as input to GenerateModel, there is another feat
 The ModelData class has a method, DumpToJSON, that generates a JSON file with the model components.
 
 ```python
-sbmltoodepy.modelData.DumpToJSON("YourModelNameHere.json")
+sbmltoodepy.dataclasses.ModelData.DumpToJSON(dataOfModel,"YourModelNameHere.json")
 ```
 
 A JSON file created from the DumpToJSON method can be used a create a new instance of the ModelData class.
