@@ -31,7 +31,7 @@ In reality, creating a Python model with SBMLtoODEpy is a two step process that 
 
 ```python
 dataOfModel = sbmltoodepy.parse.ParseSBMLFile("YourModelNameHere.xml")
-sbmltoodepy.modulegeneration.GenerateModel(modelData, "PythonFile.py", objectName = "ModelName")
+sbmltoodepy.modulegeneration.GenerateModel(dataOfModel, "PythonFile.py", objectName = "ModelName")
 ```
 
 The function ParseAndCreateModel serves as a wrapper for two other functions, ParseSBMLFile and GenerateModel.
