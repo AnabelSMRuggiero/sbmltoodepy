@@ -41,7 +41,7 @@ The model components can be output to a JSON file. JSON is a format that is easi
 The extracted model components are used to create a Python file that defines a class that implements the model.
 A method for the class is generated to solve the model using a wrapper for the lsoda algorithm in the SciPy Python package [@oliphant2007], and the NumPy Python package [@van2011] is also used. To verify that SBMLtoODEpy properly interprets SBML files and converts them into functional differential equations models, we successfully compared the performance of SMBLtoODEpy to COPASI, a graphical user interface based platform for simulating SBML models [@hoops2006], for a set of representative SBML files downloaded from the BioModels Database that were deposited for a selection of systems biology publications [@borisov2009; @guyton1972; @kerkhoven2013; @smallbone2014; @waugh2006; @zi2011]. These files have been included in the SBMLtoODEpy package within [the sbmltoodepy/sbml_files subdirectory](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files) to serve as examples for users. In our documentation, we have provided a tutorial on how to use the SBMLtoODEpy software package.
 
-# Acknowledgements
+# Acknowledgments
 
 The research results discussed in this publication were made possible in part by funding through the award for project number HR17-057, from the Oklahoma Center for the Advancement of Science and Technology.
 
