@@ -62,7 +62,7 @@ modelInstance = ModelName()
 ```
 
 The main components that make up the state of an SBML are compartments, parameters, and species. Each of these are stored in a dictionary that is a member of the model class. These members are named c, p,and s repectively.
-The key for each dictionary entry is the id, as defined by the SBML specification, for the component. By printing one of these dictionaries keys, you can see the id of each compartment, parameter, or species.
+The key for each dictionary entry is the identification (id), as defined by the SBML specification, for the component. By printing one of these dictionaries keys, you can see the id of each compartment, parameter, or species.
 
 ```python
 # get the dictionary keys for the IDs of the species in the model
@@ -88,8 +88,8 @@ print(modelInstance.s['speciesId'].amount)
 
 Function definitions and reactions are stored in a similar manner.
 Currently, rules and initial assignments are not handled the same way.
-Rate rules are bound methods of the model class that are called along side reactions, and assignment rules and initial assignments are implemented through a method of themodel class, AssignmentRules().
-Algebraic rules are completely unsupported currently.
+Rate rules are bound methods of the model class that are called alongside reactions, and assignment rules and initial assignments are implemented through a method of the model class, AssignmentRules().
+Algebraic rules are not completely supported currently.
 
 In SBML, each model component can have both an id and a name. 
 Each of the dictionaries containing compartments, parameters, species, reations, and function definitions can be searched by the component name using the appropriate method.
