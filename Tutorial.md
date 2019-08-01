@@ -77,8 +77,11 @@ The individual model elements are represented as instances of an appropriate cla
 Species are instances of the Species class, and the concentration and amount members are used in calculations. Compartments are instances of the Compartment class, and the size member contains the size of the compartment.
 
 ```python
-print(modelInstance.c['compartmentId'].size)
+# replace compartmentId with one of the dictionary keys returned from print(modelInstance.c.keys())
+print(modelInstance.c['compartmentId'].size) 
+# replace parameterId with one of the dictionary keys returned from print(modelInstance.p.keys())
 print(modelInstance.p['parameterId'].value)
+# replace speciesId with one of the dictionary keys returned from print(modelInstance.s.keys())
 print(modelInstance.s['speciesId'].concentration)
 print(modelInstance.s['speciesId'].amount)
 ```
