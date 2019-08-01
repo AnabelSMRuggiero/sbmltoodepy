@@ -43,29 +43,25 @@ import sbmltoodepy
 sbmltoodepy.utilities.TestPackage()
 ```
 
-The TestPackage function raises a warning about trying to set a constant species and 7 numbers.
+The TestPackage function raises a warning about trying to set a constant species and 6 numbers.
         
-1.279495335622681e-06
-
-9.427471779552446e-10
-
-1.330807667219949e-07
-
-9.797580656559267e-08
-
-4.0569605652344643e-07
-
-2.661173190172687e-05
+1.27949533562e-06
+9.42747177955e-10
+1.33080766722e-07
+9.79758065656e-08
+4.05696056523e-07
+2.66117319017e-05
     
-These are the average relative errors for species, parameters, and compartments between the models generated in this function and results calculated by COPASI for seven different models.
+These are the average relative errors for species, parameters, and compartments between the model results generated using SBMLtoODEpy and results calculated by COPASI for six different models provided in [the sbmltoodepy/sbml_files subdirectory](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files): Smallbone2013, Borisov2009, Guyton1972, Kerkhoven2013, Waugh2006, and Zi2011, respectively. These examples are discussed in more detail in the [tutorial](https://github.com/SMRuggiero/sbmltoodepy/blob/master/Tutorial.md)
 
-## Acknowledgments
+## Supporting Python packages
 
-The following python packages were used in this project and are needed to generate and run python models:
+The following Python packages were used in this project and are needed to generate and run python models:
 * [NumPy][1]
 * [SciPy][2]
 * [libSBML][3]
 
+## Links
 For more information on using this package, [click here to see the tutorial.](https://github.com/SMRuggiero/sbmltoodepy/blob/master/Tutorial.md)
 
 For more information on SBML, including specifications and other software that supports SBML, [click here for the SBML web site](http://sbml.org/Main_Page)
@@ -79,3 +75,7 @@ For this project's github repository, [click here.](https://github.com/SMRuggier
 [1]: https://www.numpy.org/ "NumPy"
 [2]: https://www.scipy.org/ "SciPy"
 [3]: http://sbml.org/Software/libSBML "libSBML"
+
+## Acknowledgments
+
+The software package described here was made possible in part by funding through the award for project number HR17-057, from the Oklahoma Center for the Advancement of Science and Technology.
