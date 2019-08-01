@@ -46,10 +46,15 @@ sbmltoodepy.utilities.TestPackage()
 The TestPackage function raises a warning about trying to set a constant species and 6 numbers.
         
 1.27949533562e-06
+
 9.42747177955e-10
+
 1.33080766722e-07
+
 9.79758065656e-08
+
 4.05696056523e-07
+
 2.66117319017e-05
     
 These are the average relative errors for species, parameters, and compartments between the model results generated using SBMLtoODEpy and results calculated by COPASI for six different models provided in [the sbmltoodepy/sbml_files subdirectory](https://github.com/SMRuggiero/sbmltoodepy/tree/master/sbmltoodepy/sbml_files): Smallbone2013, Borisov2009, Guyton1972, Kerkhoven2013, Waugh2006, and Zi2011, respectively. These examples are discussed in more detail in the [tutorial](https://github.com/SMRuggiero/sbmltoodepy/blob/master/Tutorial.md).
