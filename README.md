@@ -1,7 +1,7 @@
 # SBMLtoODEpy
 
 ## Overview
-SBMLtoODEpy is a software package that was developed to address these limitations by enabling conversion of Systems Biology Markup Language (SBML) models into Python classes that can be rapidly incorporated into biomedical systems modeling projects written in Python, such as the multiscale simulation platform CompuCell3D, or used simulated in Python. 
+SBMLtoODEpy is a software package that was developed to enable conversion of Systems Biology Markup Language (SBML) models into Python classes that can be rapidly incorporated into biomedical systems modeling projects written in Python, such as the multiscale simulation platform CompuCell3D, or used simulated as ordinary equations models in Python. 
 
 ## Authors
 Steve M. Ruggiero and Ashlee N. Ford Versypt, School of Chemical Engineering, Oklahoma State University
@@ -22,7 +22,7 @@ The parameters are:
 
 This creates a new python file containing a class implementing the SBML model. 
 
-To run the model, instantiate the class and call the RunSimulation method with the desired timestep.
+To run the model, instantiate the class and call the RunSimulation method with the desired timestep deltaT and optional specification of tolerances.
 
 ```python
 model = SBMLmodel()
@@ -31,7 +31,7 @@ model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 
 ## Installation Instructions
 
-SBMLtoODEpy can be downloaded using pip
+SBMLtoODEpy can be downloaded using pip:
 ```
 pip install sbmltoodepy
 ```
@@ -43,7 +43,7 @@ import sbmltoodepy
 sbmltoodepy.utilities.TestPackage()
 ```
 
-The function raises a warning about trying to set a constant species and 7 numbers.
+The TestPackage function raises a warning about trying to set a constant species and 7 numbers.
         
 1.279495335622681e-06
 
@@ -72,7 +72,7 @@ For more information on SBML, including specifications and other software that s
 
 For a good source of SBML models, [the BioModels repository is a great place to search.](https://www.ebi.ac.uk/biomodels/)
 
-For this project's documentation, [click here.](https://sbmltoodepy.readthedocs.io/en/latest/)
+For this project's code documentation, [click here.](https://sbmltoodepy.readthedocs.io/en/latest/)
 
 For this project's github repository, [click here.](https://github.com/SMRuggiero/sbmltopyode)
 
