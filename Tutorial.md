@@ -58,7 +58,7 @@ After generating the Python implementation of a model, you can now import the ne
 
 ```python
 from PythonFile import ModelName
-modelInstance = ModelName
+modelInstance = ModelName()
 ```
 
 The main components that make up the state of an SBML are compartments, parameters, and species. Each of these are stored in a dictionary that is a member of the model class. These members are named c, p,and s repectively.
