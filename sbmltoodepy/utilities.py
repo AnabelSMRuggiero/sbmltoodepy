@@ -63,7 +63,6 @@ def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = Non
     modelData = ParseSBMLFile(inputFilePath)
     if not jsonFilePath == None: 
         modelData.DumpToJSON(jsonFilePath)
-#    reloadedModelData = ModelData.LoadFromJSON(textFileName)
     GenerateModel(modelData, outputFilePath, objectName = className)
     
 def PrintConcentrations(model):
@@ -82,26 +81,27 @@ def TestPackage():
     
     Notes
     -----
-    The function raises a warning about trying to set a constant species and 7 numbers.
+    The function raises a warning about trying to set a constant species and 6 numbers.
     
-    1.279495335622681e-06
-
-    9.427471779552446e-10
-
-    1.330807667219949e-07
-
-    9.797580656559267e-08
-
-    4.0569605652344643e-07
-
-    2.661173190172687e-05
+    1.27949533562e-06
     
-    These are the average relative errors for species, parameters, and compartments between the models generated in this function and results calculated by COPASI
-    for seven different models.
+    9.42747177955e-10
     
+    1.33080766722e-07
+    
+    9.79758065656e-08
+    
+    4.05696056523e-07
+    
+    2.66117319017e-05
+    
+    These are the average relative errors for species, parameters, and compartments between the model results generated using SBMLtoODEpy and results calculated by COPASI
+    for six different models provided in the sbmltoodepy/sbml_files subdirectory: Smallbone2013, Borisov2009, Guyton1972, Kerkhoven2013, Waugh2006, and Zi2011, respectively.
+    
+    This function is intended as to serve as an example of using the sample models. 
+
     """
-#    import os
-#    print(os.getcwd())
+
     dirname = os.path.dirname(__file__)
     ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Smallbone2013_Colon_Crypt_cycle.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Smallbone2013.py'), className = 'Smallbone2013')
     
@@ -164,19 +164,6 @@ def TestPackage():
     borisovIndividualRelativeError = [abs(borisovSpeciesConcentrations[i] - borisovActualConcentrations[i])/abs(borisovActualConcentrations[i] + sys.float_info.epsilon) for i in range(len(borisovActualConcentrations))]
     borisovAverageRelativeError = sum(borisovIndividualRelativeError)/len(borisovIndividualRelativeError)
     
-#    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Cizmeci2013_insulin_angiotensin_II.xml'),
-#                        outputFilePath = os.path.join(dirname, 'sbml_files/Cizmeci2013.py'), className = 'Cizmeci2013')
-#    
-#    from .sbml_files.Cizmeci2013 import Cizmeci2013
-#    
-#    model = Cizmeci2013()
-#    model.RunSimulation(1)
-#    
-#    cizmeciSpeciesConcentrations = [model.s['s1'].amount, model.s['s3'].amount, model.s['s4'].amount, model.s['s5'].amount, model.s['s6'].amount, model.s['s8'].amount, model.s['s7'].amount, model.s['s9'].amount, model.s['s10'].amount, model.s['s2'].amount]
-#    cizmeciActualConcentrations = [0.2678291612, 0.0007303083883, 0.09281289032, 1.149877283, 0.1342254593, 0.1120818134, 1.968585388e-5, 0.01150442171, 0.001418274329, 1.234191257]
-#    cizmeciIndividualRelativeError = [abs(cizmeciSpeciesConcentrations[i] - cizmeciActualConcentrations[i])/abs(cizmeciActualConcentrations[i]) for i in range(len(cizmeciActualConcentrations))]
-#    cizmeciAverageRelativeError = sum(cizmeciIndividualRelativeError)/len(cizmeciIndividualRelativeError)    
-
     ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Guyton1972_Angiotensin.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Guyton1972.py'), className = 'Guyton1972')
 
     from .sbml_files.Guyton1972 import Guyton1972
@@ -201,29 +188,6 @@ def TestPackage():
     kerkhovenIndividualRelativeError = [abs(kerkhovenSpeciesConcentrations[i] - kerkhovenActualConcentrations[i])/abs(kerkhovenActualConcentrations[i]) for i in range(len(kerkhovenActualConcentrations))]
     kerkhovenAverageRelativeError = sum(kerkhovenIndividualRelativeError)/len(kerkhovenIndividualRelativeError)     
     
-#    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Lenbury2001_InsulinKineticsModel_B.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Lenbury2001.py'), className = 'Lenbury2001')
-
-    # from Lenbury2001 import Lenbury2001
-    
-    # model = Lenbury2001()
-    # model.RunSimulation(1)
-    
-    # lenburySpeciesConcentrations = []
-    # lenburyActualConcentrations = []
-    # lenburyIndividualRelativeError = [abs(lenburySpeciesConcentrations[i] - lenburyActualConcentrations[i])/abs(lenburyActualConcentrations[i]) for i in range(len(lenburyActualConcentrations))]
-    # lenburyAverageRelativeError = sum(lenburyIndividualRelativeError)/len(lenburyIndividualRelativeError)     
-
-#    ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Vizan2013_TGF_pathway_long_term_signaling.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Vizan2013.py'), className = 'Vizan2013')
-#
-#    from .sbml_files.Vizan2013 import Vizan2013
-#
-#    model = Vizan2013()
-#    model.RunSimulation(1)
-#    
-    # vizanSpeciesConcentrations = []
-    # vizanActualConcentrations = []
-    # vizanIndividualRelativeError = [abs(vizanSpeciesConcentrations[i] - vizanActualConcentrations[i])/abs(vizanActualConcentrations[i]) for i in range(len(vizanActualConcentrations))]
-    # vizanAverageRelativeError = sum(vizanIndividualRelativeError)/len(vizanIndividualRelativeError)     
 
     ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Waugh2006_Diabetic_Wound_Healing_TGF_B_Dynamics.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Waugh2006.py'), className = 'Waugh2006')
 
@@ -243,19 +207,14 @@ def TestPackage():
 
     model = Zi2011()
     model.RunSimulation(1, absoluteTolerance = 1e-16, relativeTolerance = 1e-16)
-    #, atol = 1e-16, rtol = 1e-16
     
     ziSpeciesConcentrations = [model.s['PSmad2c'].concentration, model.s['PSmad2n'].concentration, model.s['T1R_surf'].concentration, model.s['T2R_endo'].concentration, model.s['Smad2c'].concentration, model.s['Smad4n'].concentration, model.s['T2R_surf'].concentration, model.s['LRC_endo'].concentration, model.s['T1R_endo'].concentration, model.s['LRC_surf'].concentration, model.s['PSmad2_Smad4_c'].concentration, model.s['PSmad2_PSmad2_n'].concentration, model.s['TGF_beta_ex'].concentration, model.s['TGF_beta_endo'].concentration, model.s['Smad2n'].concentration, model.s['PSmad2_Smad4_n'].concentration, model.s['TGF_beta_ns'].concentration, model.s['Smad4c'].concentration, model.s['PSmad2_PSmad2_c'].concentration, model.c['Vmed'].size, model.p['totalNumT1R'].value, model.p['totalNumT2R'].value, model.p['totalNumLRC'].value, model.p['totalNumPSmad2'].value, model.p['totalNuclearPSmad2'].value, model.p['totalSmad2c'].value, model.p['totalSmad2n'].value, model.p['medium_TGF_beta_amount'].value, model.p['koff_ns'].value]
     ziActualConcentrations = [0.01391431482, 0.001607867046, 0.5255621489, 1.395985545, 60.54721489, 50.78878884, 0.02414685438, 0.04474184166, 6.479258, 0.1763515728, 0.03276905664, 2.141642116e-6, 0.0486999112, 0.0007455529254, 28.4939252, 0.01846754609, 0.001057648159, 50.76407599, 6.327163318e-6, 1.999484006e-9, 10004.99992, 2272.441261, 306.1259416, 76.74329454, 0.02007969642, 60.59391092, 28.51400489, 58424.81612, 2.033059171]
-#    ziSpeciesConcentrations = [model.s['PSmad2c'].concentration, model.s['PSmad2n'].concentration, model.s['T1R_surf'].concentration, model.s['T2R_endo'].concentration, model.s['Smad2c'].concentration, model.s['Smad4n'].concentration, model.s['T2R_surf'].concentration, model.s['LRC_endo'].concentration, model.s['T1R_endo'].concentration, model.s['LRC_surf'].concentration, model.s['PSmad2_Smad4_c'].concentration, model.s['PSmad2_PSmad2_n'].concentration, model.s['TGF_beta_ex'].concentration, model.s['TGF_beta_endo'].concentration, model.s['Smad2n'].concentration, model.s['Smad4c'].concentration, model.s['TGF_beta_ns'].concentration, model.s['PSmad2_PSmad2_c'].concentration, model.s['PSmad2_Smad4_n'].concentration, model.c['Vmed'].size, model.p['totalNumT1R'], model.p['totalNumT2R'], model.p['totalNumLRC'], model.p['totalNumPSmad2'], model.p['totalNuclearPSmad2'], model.p['totalSmad2c'], model.p['totalSmad2n'], model.p['medium_TGF_beta_amount'], model.p['koff_ns']]
-
-#    ziActualConcentrations = [2.04088e-016,3.64363e-022,0.702486,1.43997,60.6,50.8,0.201069,1.38637e-011,6.52344,8.32655e-006,1.02387e-020,1.69404e-046,0.05,3.02199e-018,28.5,50.8,2.52704e-008,4.07718e-038,6.56364e-029,2e-009,10005,2272.19,0.011529,2.82595e-013,3.64363e-022,60.6,28.5,60000,2.03306]
     ziIndividualRelativeError = [abs(ziSpeciesConcentrations[i] - ziActualConcentrations[i])/abs(ziActualConcentrations[i]) for i in range(len(ziActualConcentrations))]
     ziAverageRelativeError = sum(ziIndividualRelativeError)/len(ziIndividualRelativeError)     
 
     print(smallBoneAverageRelativeError)
     print(borisovAverageRelativeError)
-#    print(cizmeciAverageRelativeError)
     print(guytonAverageRelativeError)
     print(kerkhovenAverageRelativeError)
     print(waughAverageRelativeError)
