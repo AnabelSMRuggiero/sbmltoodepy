@@ -1,5 +1,8 @@
 # Tutorial
 
+## Interactive Jupyter Notebook working through the installation and a couple of example
+https://colab.research.google.com/drive/1yBscTNFwgliOUD10YhdWh-3HvXdj1YUF
+
 ## Creating a Python model
 
 The fastest way to create a Python model using SBMLtoODEpy is to open a Python interpreter in the same folder as the SBML file. Then, run the following lines of code using the name of your model.
