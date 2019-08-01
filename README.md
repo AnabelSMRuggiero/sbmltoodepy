@@ -79,9 +79,3 @@ For this project's github repository, [click here.](https://github.com/SMRuggier
 [1]: https://www.numpy.org/ "NumPy"
 [2]: https://www.scipy.org/ "SciPy"
 [3]: http://sbml.org/Software/libSBML "libSBML"
-[4]: https://doi.org/10.1038/msb.2009.19
-[5]: https://doi.org/10.1146/annurev.ph.34.030172.000305
-[6]: https://doi.org/10.1371/journal.pcbi.1003371
-[7]: https://dx.doi.org/10.1111%2Fiep.12062
-[8]: https://doi.org/10.1007/s11538-005-9022-3
-[9]: https://doi.org/10.1038/msb.2011.22
