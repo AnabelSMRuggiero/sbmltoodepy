@@ -1,5 +1,8 @@
 # Tutorial
 
+## Interactive Jupyter Notebook working through the installation and a couple of example
+https://colab.research.google.com/drive/1yBscTNFwgliOUD10YhdWh-3HvXdj1YUF
+
 ## Creating a Python model
 
 The fastest way to create a Python model using SBMLtoODEpy is to open a Python interpreter in the same folder as the SBML file. Then, run the following lines of code using the name of your model.
@@ -144,7 +147,7 @@ for i in range(100):
 The results can then be graphed using any method you would like. For graphing directly in python, [matplotlib is a good option.](https://matplotlib.org/)
 
 ```python
-import import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 plt.plot(times,concentrations)
 ```
 
