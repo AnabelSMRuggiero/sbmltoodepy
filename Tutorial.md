@@ -1,6 +1,9 @@
 # Tutorial
 
 ## Interactive Jupyter Notebook working through the installation and a couple of example
+SBMLtoODEpy.ipynb
+
+Online version that doesn't require installation of Python:
 https://colab.research.google.com/drive/1yBscTNFwgliOUD10YhdWh-3HvXdj1YUF
 
 ## Creating a Python model
