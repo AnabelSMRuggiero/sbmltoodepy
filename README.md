@@ -37,6 +37,11 @@ SBMLtoODEpy can be downloaded using pip:
 pip install sbmltoodepy
 ```
 
+Alternatively, SBMLtoODEpy can be installed from its source code by running the setup.py file included.
+```
+python setup.py install
+```
+
 To test the package, use the TestPackage function.
 
 ```python
