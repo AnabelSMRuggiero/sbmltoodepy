@@ -9,7 +9,7 @@ from sbmltoodepy.parse import ParseSBMLFile
 from sbmltoodepy.modulegeneration import GenerateModel
 import sys
 import os
-from sbmltoodepy.dataclasses import *
+import sbmltoodepy.dataclasses
 
 def ParseAndCreateModel(inputFilePath, jsonFilePath = None, outputFilePath = None, className = "SBMLmodel"):
     """
@@ -107,7 +107,7 @@ def TestPackage():
 
     dirname = os.path.dirname(__file__)
     ParseAndCreateModel(os.path.join(dirname, 'sbml_files/Smallbone2013_Colon_Crypt_cycle.xml'), outputFilePath = os.path.join(dirname, 'sbml_files/Smallbone2013.py'), className = 'Smallbone2013')
-    
+#    print(dirname)
     from .sbml_files.Smallbone2013 import Smallbone2013
     
     model = Smallbone2013()

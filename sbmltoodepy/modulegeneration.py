@@ -9,7 +9,6 @@ import re
 import numpy as np
 import sys
 
-from sbmltoodepy.dataclasses import *
 
             
 def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
@@ -36,7 +35,6 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     #functions in SBML/user defined functions, but also the python equivalent
     
     np.set_printoptions(threshold=sys.maxsize)
-    
     
     
     outputFile = open(outputFilePath, "w")
@@ -101,7 +99,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                  'pi' : 'np.pi',
                  'infinity' : 'np.inf',
                  'exponentiale' : 'np.e',
-                 'piecewise' : 'Piecewise'
+                 'piecewise' : 'sbmltoodepy.modelclasses.Piecewise'
                  } 
     #Add in user defined functions
 #    for function in functions:
@@ -154,27 +152,38 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     #print(rateParams)
     #print(stoichCoeffMat)
                 
-    outputFile.write("from sbmltoodepy.modelclasses import *\n")
+    outputFile.write("import sbmltoodepy.modelclasses\n")
     outputFile.write("from scipy.integrate import odeint\n")
     outputFile.write("import numpy as np\n")
     outputFile.write("import operator\n")
     outputFile.write("import math\n\n")
     
-    outputFile.write("class " + objectName +"(Model):\n\n")
+    outputFile.write("class " + objectName +"(sbmltoodepy.modelclasses.Model):\n\n")
     
     outputFile.write("\tdef __init__(self):\n\n")
     outputFile.write("\t\tself.p = {} #Dictionary of model parameters\n")
     for paramId in parameters:
-        outputFile.write("\t\tself.p[\'" + paramId + "\'] = Parameter(" + str(parameters[paramId].value)+ ", \'"+ paramId + "\', " + str(parameters[paramId].isConstant) + ', metadata = SBMLMetadata("' + parameters[paramId].name +'"))\n')
+        outputFile.write("\t\tself.p[\'" + paramId + "\'] = sbmltoodepy.modelclasses.Parameter(" + 
+                         str(parameters[paramId].value)+ ", \'"+ paramId + "\', " + 
+                         str(parameters[paramId].isConstant) + ', metadata = sbmltoodepy.modelclasses.SBMLMetadata("' + 
+                         parameters[paramId].name +'"))\n')
         
     outputFile.write("\n\t\tself.c = {} #Dictionary of compartments\n")
     for compartmentId in compartments:
-        outputFile.write("\t\tself.c[\'" + compartmentId + "\'] = Compartment(" + str(compartments[compartmentId].size) + ", " + str(compartments[compartmentId].dimensionality)+ ", " + str(compartments[compartmentId].isConstant) + ', metadata = SBMLMetadata("' + compartments[compartmentId].name +'"))\n')
+        outputFile.write("\t\tself.c[\'" + compartmentId + "\'] = sbmltoodepy.modelclasses.Compartment(" + 
+                         str(compartments[compartmentId].size) + ", " + str(compartments[compartmentId].dimensionality) + 
+                         ", " + str(compartments[compartmentId].isConstant) + 
+                         ', metadata = sbmltoodepy.modelclasses.SBMLMetadata("' + compartments[compartmentId].name +'"))\n')
         
     outputFile.write("\n\t\tself.s = {} #Dictionary of chemical species\n")
     for speciesId in species:
 #        outputFile.write("\t\tspeciesMetadata = SBMLMetadata('" + species[speciesId].name +"')\n")
-        outputFile.write("\t\tself.s[\'" + speciesId + "\'] = Species(" + str(species[speciesId].value) + ", '" + species[speciesId].valueType + "', self.c['" + species[speciesId].compartment + "'], " + str(species[speciesId].hasOnlySubstanceUnits) + ", constant = " + str(species[speciesId].isConstant) + ', metadata = SBMLMetadata("' + species[speciesId].name +'"))\n')
+        outputFile.write("\t\tself.s[\'" + speciesId + "\'] = sbmltoodepy.modelclasses.Species(" + 
+                         str(species[speciesId].value) + ", '" + species[speciesId].valueType + 
+                         "', self.c['" + species[speciesId].compartment + "'], " + 
+                         str(species[speciesId].hasOnlySubstanceUnits) + ", constant = " + 
+                         str(species[speciesId].isConstant) + ', metadata = sbmltoodepy.modelclasses.SBMLMetadata("' + 
+                         species[speciesId].name +'"))\n')
         for key, rule in assignmentRules.items():
             if rule.variable == speciesId:
                 outputFile.write("\t\tself.s[\'" + speciesId + "\']._modifiedBy = " + rule.Id + "\n")
@@ -499,10 +508,10 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         outputFile.write('\t\tif metadata:\n')
         outputFile.write('\t\t\tself.metadata = metadata\n')
         outputFile.write('\t\telse:\n')
-        outputFile.write('\t\t\tself.metadata = SBMLMetadata("' + reactions[key].name + '")\n')
+        outputFile.write('\t\t\tself.metadata = sbmltoodepy.modelclasses.SBMLMetadata("' + reactions[key].name + '")\n')
         
         for param in reactions[key].rxnParameters:
-            outputFile.write("\t\tself.p[\'" + param[0] + "\'] = Parameter(" + str(param[1]) + ", '" + param[0] + "')\n")
+            outputFile.write("\t\tself.p[\'" + param[0] + "\'] = sbmltoodepy.modelclasses.Parameter(" + str(param[1]) + ", '" + param[0] + "')\n")
             #"\t\tself.p[\'" + paramId + "\'] = Parameter(" + str(parameters[paramId].value)+ ", "+ paramId + ", " + str(parameters[paramId].isConstant) +")\n"
         
         outputFile.write('\n\tdef __call__(self):\n')
@@ -520,7 +529,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         outputFile.write('\t\tif metadata:\n')
         outputFile.write('\t\t\tself.metadata = metadata\n')
         outputFile.write('\t\telse:\n')
-        outputFile.write('\t\t\tself.metadata = SBMLMetadata("' + functions[key].name + '")\n')
+        outputFile.write('\t\t\tself.metadata = sbmltoodepy.modelclasses.SBMLMetadata("' + functions[key].name + '")\n')
 
         arguments = functions[key].arguments
         argumentString = ""
