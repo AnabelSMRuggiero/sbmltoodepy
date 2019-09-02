@@ -4,10 +4,10 @@ Created on Tue Jul  3 12:12:05 2018
 
 @author: Steve
 """
-import libsbml
+from libsbml import *
 import re
 import sys
-import sbmltoodepy.dataclasses
+from sbmltopyode.ModelDataClasses import *
 
 def ParseParameterAssignment(parameterIndex, parameter):
     #if parameter.isSetValue() and parameter.isSetId():
@@ -18,7 +18,7 @@ def ParseParameterAssignment(parameterIndex, parameter):
 #        #print("Parameter," + str(parameterIndex + 1) + "\n" + str(parameterId) + "\nValue\n" + str(parameterValue))
 #        outputFile.write(str(parameterName) + ";" + str(parameterValue) + "\n")
 #        return
-    newParameter = sbmltoodepy.dataclasses.ParameterData()
+    newParameter = ParameterData()
     if parameter.isSetName():
         newParameter.name = parameter.getName()
     else:
@@ -46,10 +46,10 @@ def ParseRule(ruleIndex, rule):
 
 #        outputFile.write("Rule; " + ruleId + "; Algebraic; " + ruleName + "\n")
     if rule.isAssignment():
-        newRule = sbmltoodepy.dataclasses.AssignmentRuleData()
+        newRule = AssignmentRuleData()
 #        outputFile.write("Rule; " + ruleId + "; Assignment; " + ruleName + "\n")
     if rule.isRate():
-        newRule = sbmltoodepy.dataclasses.RateRuleData()
+        newRule = RateRuleData()
 #        outputFile.write("Rule; " + ruleId + "; Rate; " + ruleName + "\n")
     
     if rule.isSetName():
@@ -63,7 +63,7 @@ def ParseRule(ruleIndex, rule):
         newRule.Id = str(ruleIndex + 1)
     
     newRule.variable = rule.getVariable()
-    newRule.math = libsbml.formulaToL3String(rule.getMath())
+    newRule.math = formulaToL3String(rule.getMath())
 
 
         
@@ -77,7 +77,7 @@ def ParseRule(ruleIndex, rule):
         
 def ParseSpecies(speciesIndex, species):
 
-    newSpecies = sbmltoodepy.dataclasses.SpeciesData()
+    newSpecies = SpeciesData()
     
     if species.isSetName():
         newSpecies.name = species.getName()
@@ -110,7 +110,7 @@ def ParseSpecies(speciesIndex, species):
     
         
 def ParseReaction(reactionIndex, reaction):
-    newReaction = sbmltoodepy.dataclasses.ReactionData()
+    newReaction = ReactionData()
     if reaction.isSetIdAttribute():
         newReaction.Id = reaction.getIdAttribute()
     else:
@@ -148,7 +148,7 @@ def ParseReaction(reactionIndex, reaction):
     rateLawObject = reaction.getKineticLaw()
     
     if rateLawObject.getMath() != None:
-        newReaction.rateLaw = libsbml.formulaToL3String(rateLawObject.getMath())
+        newReaction.rateLaw = formulaToL3String(rateLawObject.getMath())
 #        outputFile.write(formulaToString(rateLaw.getMath()) + "\n")
     else:
         raise Exception("Rate law defined by plugin that is not currently supported")
@@ -171,7 +171,7 @@ def ParseReaction(reactionIndex, reaction):
         
 def ParseCompartment(compartmentIndex, compartment):
     
-    newCompartment = sbmltoodepy.dataclasses.CompartmentData()
+    newCompartment = CompartmentData()
     
     newCompartment.Id = compartment.getId()
     
@@ -201,7 +201,7 @@ def ParseCompartment(compartmentIndex, compartment):
     
 def ParseFunction(functionIndex, function):
     
-    newFunction = sbmltoodepy.dataclasses.FunctionData()
+    newFunction = FunctionData()
 #    outputFile.write("Function; " + str(functionIndex + 1) + "\n")
     
     if function.isSetName():
@@ -211,13 +211,13 @@ def ParseFunction(functionIndex, function):
         
 #    outputFile.write(function.getId() + ";" + functionName + "\n")
     newFunction.Id = function.getId()
-    newFunction.mathString = libsbml.formulaToL3String(function.getMath())
+    newFunction.mathString = formulaToL3String(function.getMath())
     numArguments = function.getNumArguments()
     funcStringIter = re.finditer(",", newFunction.mathString)
     newFunction.arguments = []
     for i in range(numArguments):
         match = next(funcStringIter)
-        newFunction.arguments.append(libsbml.formulaToString(function.getArgument(i)))
+        newFunction.arguments.append(formulaToString(function.getArgument(i)))
 
 
     newFunction.mathString = newFunction.mathString[match.end()+1:-1]
@@ -241,7 +241,7 @@ def ParseFunction(functionIndex, function):
     
 def ParseInitialAssignment(assignmentIndex, assignment):
     
-    newAssignment = sbmltoodepy.dataclasses.InitialAssignmentData()
+    newAssignment = InitialAssignmentData()
     
     if assignment.isSetIdAttribute():
         newAssignment.Id = str(assignment.getIdAttribute())
@@ -249,7 +249,7 @@ def ParseInitialAssignment(assignmentIndex, assignment):
         newAssignment.Id = str(assignmentIndex + 1)
         
     newAssignment.variable = assignment.getSymbol()
-    newAssignment.math = libsbml.formulaToL3String(assignment.getMath())
+    newAssignment.math = formulaToL3String(assignment.getMath())
     newAssignment.name = assignment.getName()
     return newAssignment
     
@@ -265,21 +265,15 @@ def ParseSBMLFile(filePath):
     -------
     ModelData
         An object containing the model's components and their properties.
-        
-    Notes
-    -----
-    This function manages the process extracting an SBML model's elements using libSBML.
-    The design intent is for the DumpToJSON method of the returned ModelData instance to be called, 
-    or the ModelData instance passed to the GenerateModel function.
 
     """
-    doc = libsbml.readSBML(filePath)
+    doc = readSBML(filePath)
     
     assert(doc.getNumErrors() == 0)
     
     model = doc.getModel()    
     
-    modelData = sbmltoodepy.dataclasses.ModelData()
+    modelData = ModelData()
 #    outputFile = open(outputPath, "w")
 	
 #    outputFile.write("Parameters"+ "\n")
@@ -301,9 +295,9 @@ def ParseSBMLFile(filePath):
 #    outputFile.write("Rules"+ "\n")
     for i in range(model.getNumRules()):
         newRule = ParseRule(i,model.getRule(i))
-        if type(newRule) == sbmltoodepy.dataclasses.AssignmentRuleData:
+        if type(newRule) == AssignmentRuleData:
             modelData.assignmentRules[newRule.Id] = newRule
-        elif type(newRule) == sbmltoodepy.dataclasses.RateRuleData:
+        elif type(newRule) == RateRuleData:
             modelData.rateRules[newRule.Id] = newRule
 #    outputFile.write("Reactions"+ "\n")
     for i in range(model.getNumReactions()):

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Model Classes &#8212; sbmltopyode 0.0 documentation</title>
+    <title>Model Classes &#8212; sbmltoodepy 0.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -17,7 +17,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Parse and Generate" href="Parser.html" />
+    <link rel="next" title="Parse and Generate" href="Parse.html" />
     <link rel="prev" title="Data Classes" href="DataClasses.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -38,8 +38,8 @@
   <div class="section" id="model-classes">
 <h1>Model Classes<a class="headerlink" href="#model-classes" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="SBMLModelClasses.Species">
-<em class="property">class </em><code class="descclassname">SBMLModelClasses.</code><code class="descname">Species</code><span class="sig-paren">(</span><em>value</em>, <em>valueType</em>, <em>compartment</em>, <em>hasOnlySubstanceUnits</em>, <em>constant=False</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="headerlink" href="#SBMLModelClasses.Species" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Species">
+<em class="property">class </em><code class="descclassname">modelclasses.</code><code class="descname">Species</code><span class="sig-paren">(</span><em>value</em>, <em>valueType</em>, <em>compartment</em>, <em>hasOnlySubstanceUnits</em>, <em>constant=False</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Species" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class represents a species as defined by SBML.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -50,7 +50,7 @@
 the concentrationIn value.</li>
 <li><strong>valueType</strong> (<em>str</em>) – If valueType is equal to”Concentration”, the amount input is assigned to the concentration member.
 Otherwise, amount is assigned to the amount member.</li>
-<li><strong>compartment</strong> (<a class="reference internal" href="#SBMLModelClasses.Compartment" title="SBMLModelClasses.Compartment"><em>Compartment</em></a>) – Sets the compartment member to reference this input.</li>
+<li><strong>compartment</strong> (<a class="reference internal" href="#modelclasses.Compartment" title="modelclasses.Compartment"><em>Compartment</em></a>) – Sets the compartment member to reference this input.</li>
 <li><strong>hasOnlySubstanceUnits</strong> (<em>bool</em>) – Determines if the species concentration or amount is used is rate laws</li>
 <li><strong>constant</strong> (<em>bool</em>) – If true, any attempts to modify the amount or concentration member fail.</li>
 <li><strong>metadata</strong> (<em>SBMLMetadata</em>) – An object containing information about the model component stored in the SBML file</li>
@@ -60,8 +60,8 @@ Otherwise, amount is assigned to the amount member.</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="SBMLModelClasses.Species.metadata">
-<code class="descname">metadata</code><a class="headerlink" href="#SBMLModelClasses.Species.metadata" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Species.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#modelclasses.Species.metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Additional information about the species contained in the SBML model</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -74,8 +74,8 @@ Otherwise, amount is assigned to the amount member.</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SBMLModelClasses.Species.amount">
-<code class="descname">amount</code><a class="headerlink" href="#SBMLModelClasses.Species.amount" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Species.amount">
+<code class="descname">amount</code><a class="headerlink" href="#modelclasses.Species.amount" title="Permalink to this definition">¶</a></dt>
 <dd><p>The total amount of the species that is present.
 This volume is constant with respect to compartment size, unless the hasOnlySubstanceUnits
 member equals True and the species is modified by a rule or an event (events
@@ -92,22 +92,22 @@ to concentration as well.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SBMLModelClasses.Species.compartment">
-<code class="descname">compartment</code><a class="headerlink" href="#SBMLModelClasses.Species.compartment" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Species.compartment">
+<code class="descname">compartment</code><a class="headerlink" href="#modelclasses.Species.compartment" title="Permalink to this definition">¶</a></dt>
 <dd><p>The compartment that this species is contained within.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#SBMLModelClasses.Compartment" title="SBMLModelClasses.Compartment">Compartment</a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#modelclasses.Compartment" title="modelclasses.Compartment">Compartment</a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SBMLModelClasses.Species.concentration">
-<code class="descname">concentration</code><a class="headerlink" href="#SBMLModelClasses.Species.concentration" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Species.concentration">
+<code class="descname">concentration</code><a class="headerlink" href="#modelclasses.Species.concentration" title="Permalink to this definition">¶</a></dt>
 <dd><p>The concentration of the species.
 Direct changes to this member are automatically applied to amount as well.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -123,8 +123,8 @@ Direct changes to this member are automatically applied to amount as well.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="SBMLModelClasses.Compartment">
-<em class="property">class </em><code class="descclassname">SBMLModelClasses.</code><code class="descname">Compartment</code><span class="sig-paren">(</span><em>size</em>, <em>dimensionality</em>, <em>isConstant=False</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="headerlink" href="#SBMLModelClasses.Compartment" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Compartment">
+<em class="property">class </em><code class="descclassname">modelclasses.</code><code class="descname">Compartment</code><span class="sig-paren">(</span><em>size</em>, <em>dimensionality</em>, <em>isConstant=False</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Compartment" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class represents a compartment which is one of the model elements in SBML.</p>
 <p>Each species is associated with one compartment by referencing the appropriate
 compartment with its own compartment member.</p>
@@ -146,8 +146,8 @@ and a warning is raised.</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="SBMLModelClasses.Compartment.dimensionality">
-<code class="descname">dimensionality</code><a class="headerlink" href="#SBMLModelClasses.Compartment.dimensionality" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Compartment.dimensionality">
+<code class="descname">dimensionality</code><a class="headerlink" href="#modelclasses.Compartment.dimensionality" title="Permalink to this definition">¶</a></dt>
 <dd><p>The dimensionality of the compartment</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -160,8 +160,8 @@ and a warning is raised.</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SBMLModelClasses.Compartment.metadata">
-<code class="descname">metadata</code><a class="headerlink" href="#SBMLModelClasses.Compartment.metadata" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Compartment.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#modelclasses.Compartment.metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Additional information about the compartment contained in the SBML model</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -174,8 +174,8 @@ and a warning is raised.</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="SBMLModelClasses.Compartment.size">
-<code class="descname">size</code><a class="headerlink" href="#SBMLModelClasses.Compartment.size" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Compartment.size">
+<code class="descname">size</code><a class="headerlink" href="#modelclasses.Compartment.size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the comparment. This is used by species to calculate their concentrations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -189,9 +189,82 @@ and a warning is raised.</li>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="modelclasses.Parameter">
+<em class="property">class </em><code class="descclassname">modelclasses.</code><code class="descname">Parameter</code><span class="sig-paren">(</span><em>value</em>, <em>Id</em>, <em>constant=False</em>, <em>units=None</em>, <em>metadata=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class represents a parameter as defined by SBML.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<em>float</em>) – Sets either the value of the parameter.</li>
+<li><strong>Id</strong> (<em>str</em>) – The Id of the parameter</li>
+<li><strong>constant</strong> (<em>bool</em>) – If true, any attempts to modify the value member fail.</li>
+<li><strong>metadata</strong> (<em>SBMLMetadata</em>) – An object containing information about the model component stored in the SBML file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="modelclasses.Parameter.metadata">
+<code class="descname">metadata</code><a class="headerlink" href="#modelclasses.Parameter.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional information about the species contained in the SBML model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">SBMLMetadata</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="modelclasses.Model">
+<em class="property">class </em><code class="descclassname">modelclasses.</code><code class="descname">Model</code><a class="headerlink" href="#modelclasses.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is inhereted by model classes generated .</p>
+<dl class="method">
+<dt id="modelclasses.Model.SearchParametersByName">
+<code class="descname">SearchParametersByName</code><span class="sig-paren">(</span><em>name</em>, <em>suppress = False</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Model.SearchParametersByName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modelclasses.Model.SearchCompartmentsByName">
+<code class="descname">SearchCompartmentsByName</code><span class="sig-paren">(</span><em>name</em>, <em>suppress = False</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Model.SearchCompartmentsByName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modelclasses.Model.SearchSpeciesByName">
+<code class="descname">SearchSpeciesByName</code><span class="sig-paren">(</span><em>name</em>, <em>suppress = False</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Model.SearchSpeciesByName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modelclasses.Model.SearchReactionsByName">
+<code class="descname">SearchReactionsByName</code><span class="sig-paren">(</span><em>name</em>, <em>suppress = False</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Model.SearchReactionsByName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modelclasses.Model.SearchFunctionsByName">
+<code class="descname">SearchFunctionsByName</code><span class="sig-paren">(</span><em>name</em>, <em>suppress = False</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Model.SearchFunctionsByName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modelclasses.Model.SearchComponentsByName">
+<code class="descname">SearchComponentsByName</code><span class="sig-paren">(</span><em>componentDict</em>, <em>name</em>, <em>suppress = False</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Model.SearchComponentsByName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches a dictionary of SBML model components for any components that match the name argument.
+This method raises an exception if the suppress keyword argument is False and a match is not found.
+The other search methods (eg. SearchParametersByName) serve as wrappers for this method.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="function">
-<dt id="SBMLModelClasses.Piecewise">
-<code class="descclassname">SBMLModelClasses.</code><code class="descname">Piecewise</code><span class="sig-paren">(</span><em>expression1, condition1 [, expression2, condition2 [,...]] [, otherwise]</em><span class="sig-paren">)</span><a class="headerlink" href="#SBMLModelClasses.Piecewise" title="Permalink to this definition">¶</a></dt>
+<dt id="modelclasses.Piecewise">
+<code class="descclassname">modelclasses.</code><code class="descname">Piecewise</code><span class="sig-paren">(</span><em>expression1, condition1 [, expression2, condition2 [,...]] [, otherwise]</em><span class="sig-paren">)</span><a class="headerlink" href="#modelclasses.Piecewise" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function implements the Piecewise function used in SBML models.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -249,7 +322,7 @@ otherwise is not provided.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">sbmltopyode</a></h1>
+<h1 class="logo"><a href="index.html">sbmltoodepy</a></h1>
 
 
 
@@ -260,11 +333,13 @@ otherwise is not provided.</p>
 
 <h3>Navigation</h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">SBMLtoODEpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DataClasses.html">Data Classes</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Model Classes</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Parser.html">Parse and Generate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parse.html">Parse and Generate</a></li>
 </ul>
 
 <div class="relations">
@@ -272,7 +347,7 @@ otherwise is not provided.</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="DataClasses.html" title="previous chapter">Data Classes</a></li>
-      <li>Next: <a href="Parser.html" title="next chapter">Parse and Generate</a></li>
+      <li>Next: <a href="Parse.html" title="next chapter">Parse and Generate</a></li>
   </ul></li>
 </ul>
 </div>

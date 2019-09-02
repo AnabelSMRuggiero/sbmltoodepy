@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to SBMLtoODEpy's documentation!
-======================================
+=======================================
 
 Contents:
 
@@ -14,6 +14,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
+   README
+   Tutorial
    DataClasses
    ModelClasses
    Parse

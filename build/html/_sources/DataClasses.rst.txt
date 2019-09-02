@@ -2,31 +2,31 @@
  Data Classes
 ==============
 
-.. autoclass:: ModelDataClasses.ModelData
+.. autoclass:: dataclasses.ModelData
    :members:
 
-.. autoclass:: ModelDataClasses.ParameterData
+.. autoclass:: dataclasses.ParameterData
    :members:
    
-.. autoclass:: ModelDataClasses.RateRuleData
+.. autoclass:: dataclasses.RateRuleData
    :members:
    
-.. autoclass:: ModelDataClasses.AssignmentRuleData
+.. autoclass:: dataclasses.AssignmentRuleData
    :members:
    
-.. autoclass:: ModelDataClasses.CompartmentData
+.. autoclass:: dataclasses.CompartmentData
    :members:
    
-.. autoclass:: ModelDataClasses.SpeciesData
+.. autoclass:: dataclasses.SpeciesData
    :members:
    
-.. autoclass:: ModelDataClasses.ReactionData
+.. autoclass:: dataclasses.ReactionData
    :members:
    
-.. autoclass:: ModelDataClasses.FunctionData
+.. autoclass:: dataclasses.FunctionData
    :members:
    
-.. autoclass:: ModelDataClasses.InitialAssignmentData
+.. autoclass:: dataclasses.InitialAssignmentData
    :members:
 
 .. toctree::

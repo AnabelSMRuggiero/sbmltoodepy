@@ -1,0 +1,224 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Parse and Generate &#8212; sbmltoodepy 0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Model Classes" href="ModelClasses.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="parse-and-generate">
+<h1>Parse and Generate<a class="headerlink" href="#parse-and-generate" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="utilities.TestPackage">
+<code class="descclassname">utilities.</code><code class="descname">TestPackage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilities.TestPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function serves to test the package.</p>
+<p class="rubric">Notes</p>
+<p>The function raises a warning about trying to set a constant species and 6 numbers.</p>
+<p>1.27949533562e-06</p>
+<p>9.42747177955e-10</p>
+<p>1.33080766722e-07</p>
+<p>9.79758065656e-08</p>
+<p>4.05696056523e-07</p>
+<p>2.66117319017e-05</p>
+<p>These are the average relative errors for species, parameters, and compartments between the model results generated using SBMLtoODEpy and results calculated by COPASI
+for six different models provided in the sbmltoodepy/sbml_files subdirectory: Smallbone2013, Borisov2009, Guyton1972, Kerkhoven2013, Waugh2006, and Zi2011, respectively.</p>
+<p>This function is intended as to serve as an example of using the sample models.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.ParseAndCreateModel">
+<code class="descclassname">utilities.</code><code class="descname">ParseAndCreateModel</code><span class="sig-paren">(</span><em>inputFilePath</em>, <em>jsonFilePath=None</em>, <em>outputFilePath=None</em>, <em>className='SBMLmodel'</em><span class="sig-paren">)</span><a class="headerlink" href="#utilities.ParseAndCreateModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function parses an SBML model file and generates a Python file implementing the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>inputFilePath</strong> (<em>str</em>) – Location of the SBML model to be parsed</li>
+<li><strong>jsonFilePath</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, a json file containing the data for each of the model components will be created.
+If a file exists at the provided location, the file will be overwritten.
+Otherwise, this functionality is skipped and just a Python file will be generated.</li>
+<li><strong>outputFilePath</strong> (<em>str</em><em>, </em><em>optional</em>) – Location where the Python file will be created.
+If a file exists at the provided location, the file will be overwritten.
+If a location is not provided, the file path of the generated python file will be based on the inputFilePath</li>
+<li><strong>className</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the class that implements the SBML model.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function will overwrite files located at jsonFilePath and outputFilePath</p>
+</div>
+<p class="rubric">Notes</p>
+<p>ParseAndCreateModel is intended to combine most of the functionality provided by this package.
+The intent is for this function to be suitable for most applications.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="parse.ParseSBMLFile">
+<code class="descclassname">parse.</code><code class="descname">ParseSBMLFile</code><span class="sig-paren">(</span><em>filePath</em><span class="sig-paren">)</span><a class="headerlink" href="#parse.ParseSBMLFile" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filePath</strong> (<em>string</em>) – File path of the SBML model to be parsed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An object containing the model’s components and their properties.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="DataClasses.html#dataclasses.ModelData" title="dataclasses.ModelData">ModelData</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This function manages the process extracting an SBML model’s elements using libSBML.
+The design intent is for the DumpToJSON method of the returned ModelData instance to be called,
+or the ModelData instance passed to the GenerateModel function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="modulegeneration.GenerateModel">
+<code class="descclassname">modulegeneration.</code><code class="descname">GenerateModel</code><span class="sig-paren">(</span><em>modelData</em>, <em>outputFilePath</em>, <em>objectName='SBMLmodel'</em><span class="sig-paren">)</span><a class="headerlink" href="#modulegeneration.GenerateModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes model data, either from ParseSBMLFIle() or imported from a .json file,
+and generates a Python file containing a class that implements the SBML model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>modelData</strong> (<a class="reference internal" href="DataClasses.html#dataclasses.ModelData" title="dataclasses.ModelData"><em>ModelData</em></a>) – An object containing all of the model components and values.</li>
+<li><strong>outputFilePath</strong> (<em>str</em>) – The desired file path of the resulting python file.</li>
+<li><strong>objectName</strong> (<em>str</em>) – The name of the class defined in the resulting python file.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sbmltoodepy</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">SBMLtoODEpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataClasses.html">Data Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelClasses.html">Model Classes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parse and Generate</a><ul class="simple">
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="ModelClasses.html" title="previous chapter">Model Classes</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Steve M Ruggiero, Ashlee Nicole Ford Versypt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Parse.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

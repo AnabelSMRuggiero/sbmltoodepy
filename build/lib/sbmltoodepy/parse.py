@@ -265,12 +265,6 @@ def ParseSBMLFile(filePath):
     -------
     ModelData
         An object containing the model's components and their properties.
-        
-    Notes
-    -----
-    This function manages the process extracting an SBML model's elements using libSBML.
-    The design intent is for the DumpToJSON method of the returned ModelData instance to be called, 
-    or the ModelData instance passed to the GenerateModel function.
 
     """
     doc = libsbml.readSBML(filePath)

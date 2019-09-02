@@ -2,13 +2,19 @@
  Model Classes
 ===============
 
-.. autoclass:: SBMLModelClasses.Species
+.. autoclass:: modelclasses.Species
    :members:
    
-.. autoclass:: SBMLModelClasses.Compartment
+.. autoclass:: modelclasses.Compartment
    :members:
    
-.. autofunction:: SBMLModelClasses.Piecewise
+.. autoclass:: modelclasses.Parameter
+   :members:
+
+.. autoclass:: modelclasses.Model
+   :members:   
+
+.. autofunction:: modelclasses.Piecewise
    
 .. toctree::
    :maxdepth: 2
