@@ -32,6 +32,7 @@ model.RunSimulation(deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6)
 
 ## Installation Instructions
 
+SBMLtoODEpy requires either Python version 3.5, 3.6, or 3.7.
 SBMLtoODEpy can be downloaded using pip:
 ```
 pip install sbmltoodepy
