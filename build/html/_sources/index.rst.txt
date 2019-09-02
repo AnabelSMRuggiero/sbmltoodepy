@@ -14,12 +14,11 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
-   README
-   Tutorial
+   ../README
    DataClasses
    ModelClasses
    Parse
-
+   ../Tutorial
 
 
 
