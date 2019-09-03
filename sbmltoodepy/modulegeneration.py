@@ -258,7 +258,12 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                 elif oldSpan != None:
                     returnRHS += rawRHS[oldSpan[1]:variable[1][0]]
                 oldSpan = variable[1]
-                if variable[0] in parameters:
+                if variable[0] in extendedParams:
+                    if objectText == "self":
+                        returnRHS += variable[0]
+                    else:
+                        returnRHS += "self.p[\'" + variable[0] + "\'].value"
+                elif variable[0] in parameters:
                     returnRHS += objectText + '.p[\'' + variable[0] + '\'].value'
                 elif variable[0] in species:
                     if not species[variable[0]].hasOnlySubstanceUnits == "True": 
@@ -271,11 +276,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                     returnRHS += mathFuncs[variable[0]]
                 elif variable[0] in functions:
                     returnRHS += objectText + '.f[\'' + variable[0] + '\']'
-                elif variable[0] in extendedParams:
-                    if objectText == "self":
-                        returnRHS += variable[0]
-                    else:
-                        returnRHS += "self.p[\'" + variable[0] + "\'].value"
+                
 
                 elif variable[0] == "time":
                     returnRHS += objectText + '.time'
@@ -521,6 +522,41 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
         rateLaw = ParseRHS(reactions[key].rateLaw, rxnParamNames, "self.parent")
         outputFile.write('\t\treturn ' + rateLaw + '\n\n')
 
+    def ParseFunctionMath(rawRHS):
+        #objectText is not "self" when parsing reaction math
+        
+        #The main purpose of this function is to turn math strings given by libSBML into
+        #code formated to properly call members of the resulting class
+        #For example k_1*C_A may turn to
+        
+        
+        rawRHS = rawRHS.replace("^", "**") #Replaces carrot notation for exponentiation with ** operator
+        variables = []
+        for match in re.finditer(r'\b[a-zA-Z_]\w*', rawRHS): #look for variable names
+            #ToDo: check for function calls
+            variables.append([rawRHS[match.start():match.end()], match.span()])
+            
+        returnRHS = ''
+        oldSpan = None
+        if variables != []:
+            for variable in variables:
+                if oldSpan == None and variable[1][0] != 0:
+                    returnRHS += rawRHS[0:variable[1][0]]
+                elif oldSpan != None:
+                    returnRHS += rawRHS[oldSpan[1]:variable[1][0]]
+                oldSpan = variable[1]
+                
+                if variable[0] in mathFuncs:
+                    returnRHS += mathFuncs[variable[0]]
+                else:
+                    returnRHS += variable[0]
+            returnRHS += rawRHS[variable[1][1]:len(rawRHS)]
+    #        print(rule[1][variable[1][1]])
+            #print(rule[1][-1])
+        else:
+            returnRHS = rawRHS
+		
+        return returnRHS
     
     for key in functions.keys():
         outputFile.write('class ' + key + ':\n\n')
@@ -539,7 +575,9 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                 argumentString += ", "
                 
         outputFile.write('\tdef __call__(self, ' + argumentString + '):\n')
-        outputFile.write("\t\treturn " + functions[key].mathString.replace("^", "**") + "\n\n")
+        mathString = functions[key].mathString.replace("^","**")
+        mathString = ParseFunctionMath(mathString)
+        outputFile.write("\t\treturn " + mathString + "\n\n")
 
     outputFile.close()		
 		
