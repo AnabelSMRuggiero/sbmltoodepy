@@ -5,10 +5,10 @@
 SBMLtoODEpy is a software package that converts Systems Biology Markup Language (SBML) models into Python classes that can be rapidly incorporated into biomedical systems modeling projects written in Python, such as the multiscale simulation platform CompuCell3D, or used simulated directly as ordinary equations models in Python. 
 
 ## Authors
-Steve M. Ruggiero and Ashlee N. Ford Versypt, School of Chemical Engineering, Oklahoma State University
+Steve M. Ruggiero and Ashlee N. Ford Versypt (ashleefv@okstate.edu), School of Chemical Engineering, Oklahoma State University
 
 ## Usage
-The simpliest use of this package is to use the ParseAndGenerate function to quickly create a python implementation of an SBML model.
+The simplest use of this package is to use the ParseAndGenerate function to quickly create a python implementation of an SBML model.
 
 ```python
 import sbmltoodepy
@@ -91,3 +91,7 @@ For this project's github repository, [click here.](https://github.com/SMRuggier
 ## Acknowledgments
 
 The software package described here was made possible in part by funding through the award for project number HR17-057, from the Oklahoma Center for the Advancement of Science and Technology.
+
+## Community Guidelines
+
+To contribute a change, users can contact Ashlee Ford Versypt by email ashleefv@okstate.edu or submit a pull request.
