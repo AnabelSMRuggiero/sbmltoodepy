@@ -1,7 +1,7 @@
 # Tutorial
 
 ## Interactive Jupyter Notebook working through the installation and a couple of example
-SBMLtoODEpy.ipynb
+[SBMLtoODEpy.ipynb](https://github.com/SMRuggiero/sbmltoodepy/blob/master/SBMLtoODEpy.ipynb)
 
 Online version that doesn't require installation of Python:
 https://colab.research.google.com/drive/1yBscTNFwgliOUD10YhdWh-3HvXdj1YUF
