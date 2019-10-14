@@ -149,11 +149,17 @@ class Species:
             self.metadata = None
         if valueType == "Concentration":
             self._concentration = value
-            self._amount = self._concentration * self._compartment.size
+            if value != None:
+                self._amount = self._concentration * self._compartment.size
+            else:
+                self._amount = None
 
         else:
             self._amount = value
-            self._concentration = self._amount / self._compartment.size
+            if value != None:
+                self._concentration = self._amount / self._compartment.size
+            else:
+                self._concentration = None
             
 #    def UpdateCompartmentSizeMember(self):
 #        self._compartmentSize = self._compartment.size

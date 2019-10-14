@@ -26,7 +26,11 @@ def ParseParameterAssignment(parameterIndex, parameter):
         
     if parameter.isSetId():
         newParameter.Id = parameter.getId()
-        newParameter.value = parameter.getValue()
+        if parameter.isSetValue():
+            newParameter.value = parameter.getValue()
+        else:
+            newParameter.value = None
+            
         if parameter.isSetConstant():
             newParameter.isConstant = parameter.getConstant()
         else:
@@ -97,11 +101,13 @@ def ParseSpecies(speciesIndex, species):
         newSpecies.value = species.getInitialAmount()
            #assert(species.isSetInitialAmount())
   
-    else:
+    elif species.isSetInitialConcentration():
         newSpecies.valueType = 'Concentration'
         newSpecies.value = species.getInitialConcentration()
 		#assert(species.isSetInitialConcentration())		
-  
+    else:
+        newSpecies.valueType = 'Amount'
+        newSpecies.value = None
     return newSpecies
 		
 #outputFile.write(species.getId() + "; " + valueType + "; " + speciesCompartment + '; ' + str(value) + '; ' + str(speciesConstant) + '; ' + str(speciesBoundary) + '; ' + str(speciesFormulaUnits) + '\n')
