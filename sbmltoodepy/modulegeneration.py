@@ -352,7 +352,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                         outputFile.write("\t\t\tself.s['" + assignment.variable + "']._constant = False\n")
                         outputFile.write("\t\t\t" + assignmentLHS + assignmentRHS + '\n')
                         outputFile.write("\t\t\tself.s['" + assignment.variable + "']._constant = isConstantValue\n\n")
-                    elif assignment.variable in compartment:
+                    elif assignment.variable in compartments:
                         outputFile.write("\t\t\tisConstantValue = self.c['" + assignment.variable + "']._constant\n")
                         outputFile.write("\t\t\tself.c['" + assignment.variable + "']._constant = False\n")
                         outputFile.write("\t\t\t" + assignmentLHS + assignmentRHS + '\n')
@@ -363,7 +363,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
                     continueVar = True
                     breakVar = False
                     break
-                elif not rule.dependents == None:
+                elif not assignment.dependents == None:
                     breakVar = False
             
         for rule in assignmentRules.values():
