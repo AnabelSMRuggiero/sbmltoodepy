@@ -1,5 +1,5 @@
 ---
-title: 'SMBLtoODEpy: A software program for converting SBML models into ODE models in Python'
+title: 'SBMLtoODEpy: A software program for converting SBML models into ODE models in Python'
 tags:
   - Python
   - Systems Biology
@@ -37,7 +37,7 @@ SBMLtoODEpy generates code that uses Python classes to create code that users wr
 The program aims to accelerate construction of multiscale models that import and reuse published SBML models,
 many of which are available in the BioModels Database at https://www.ebi.ac.uk/biomodels/
 
-In SMBLtoODEpy, each of the model components are extracted using libSBML,
+In SBMLtoODEpy, each of the model components are extracted using libSBML,
 a software library for parsing and editing SBML models [@bornstein2008].
 The model components can be output to a JSON file. JSON is a format that is easier for users to read and directly edit than either the SBML or Python implementations of the model.
 The extracted model components are used to create a Python file that defines a class that implements the model.
