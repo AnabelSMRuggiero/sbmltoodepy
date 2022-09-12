@@ -153,7 +153,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     #print(stoichCoeffMat)
                 
     outputFile.write("import sbmltoodepy.modelclasses\n")
-    outputFile.write("from scipy.integrate import odeint\n")
+    outputFile.write("from scipy.integrate import solve_ivp\n")
     outputFile.write("import numpy as np\n")
     outputFile.write("import operator\n")
     outputFile.write("import math\n\n")
@@ -446,7 +446,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     
 
             
-    outputFile.write('\tdef _SolveReactions(self, y, t):\n\n')
+    outputFile.write('\tdef _SolveReactions(self, t, y):\n\n')
     outputFile.write('\t\tself.time = t\n')
     outputFile.write('\t\t' + yArray + ' = y\n')
     outputFile.write('\t\tself.AssignmentRules()\n\n')
@@ -491,11 +491,11 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     outputFile.write('\t\trateOfSpeciesChange = stoichiometricMatrix @ reactionVelocities + rateRuleVector\n\n')
     outputFile.write('\t\treturn rateOfSpeciesChange\n\n')
     
-    outputFile.write('\tdef RunSimulation(self, deltaT, absoluteTolerance = 1e-12, relativeTolerance = 1e-6):\n\n')
+    outputFile.write('\tdef RunSimulation(self, deltaT, method="LSODA", args=None, absoluteTolerance=1e-12, relativeTolerance=1e-6, **options):\n\n')
     
     outputFile.write('\t\tfinalTime = self.time + deltaT\n')
     outputFile.write('\t\ty0 = np.array([' + yArray + '], dtype = np.float64)\n')
-    outputFile.write('\t\t' + yArray + ' = odeint(self._SolveReactions, y0, [self.time, finalTime], atol = absoluteTolerance, rtol = relativeTolerance, mxstep=5000000)[-1]\n')
+    outputFile.write('\t\t' + yArray + ' = solve_ivp(self._SolveReactions, [self.time, finalTime], y0, method=method, t_eval=[self.time, finalTime], args=args, atol=absoluteTolerance, rtol=relativeTolerance, **options).y[:, -1]\n')
     outputFile.write('\t\tself.time = finalTime\n')
     outputFile.write('\t\tself.AssignmentRules()\n')
 #    outputFile.write('\t\t[self.s[speciesId].UpdateCompartmentSizeMember() for speciesId in self.s]\n')

@@ -74,7 +74,7 @@ def PrintConcentrations(model):
 def PrintAmounts(model):
     [print(key + ' Amount: ' + str(model.s[key].amount)) for key in model.s]
     
-def TestPackage():
+def TestPackage(method="LSODA"):
     
     """
     
@@ -111,7 +111,7 @@ def TestPackage():
     from .sbml_files.Smallbone2013 import Smallbone2013
     
     model = Smallbone2013()
-    model.RunSimulation(1)
+    model.RunSimulation(1.0, method=method)
     
     smallBoneSpeciesConcentrations = [model.s['N0'].amount, model.s['N1'].amount, model.s['N2'].amount]
     smallBoneActualConcentrations = [1.75445, 27.4059, 45.6191]
@@ -125,7 +125,7 @@ def TestPackage():
     from .sbml_files.Borisov2009 import Borisov2009
     
     model = Borisov2009()
-    model.RunSimulation(1)
+    model.RunSimulation(1.0, method=method)
     
     borisovSpeciesConcentrations = [model.s['PIP3'].concentration, model.s['GS'].concentration, model.s['RasGAP'].concentration, model.s['Rp'].concentration,
                                     model.s['SHP2'].concentration, model.s['PI3K'].concentration, model.s['IRp'].concentration, 
@@ -172,7 +172,7 @@ def TestPackage():
     from .sbml_files.Guyton1972 import Guyton1972
 
     model = Guyton1972()
-    model.RunSimulation(1)
+    model.RunSimulation(1.0, method=method)
     
     guytonSpeciesConcentrations = [model.p['ANX1'].value, model.p['ANC'].value, model.p['ANGSCR'].value, model.p['MDFLW3'].value, model.p['ANX'].value, model.p['ANPR'].value, model.p['ANPRT'].value, model.p['ANPR1'].value, model.p['ANM'].value, model.p['ANU'].value, model.p['ANU1'].value, model.p['ANUVN'].value]
     guytonActualConcentrations = [0, 0.8678797002, 0.9645806004, 1.00051, 0, 0.9645806004, 0.9645806004, 0.9645806004, 0.9883008802, 0.9298052815, 0.9298052815, 1]
@@ -184,7 +184,7 @@ def TestPackage():
     from .sbml_files.Kerkhoven2013 import Kerkhoven2013
 
     model = Kerkhoven2013()
-    model.RunSimulation(1)
+    model.RunSimulation(1.0, method=method)
     
     kerkhovenSpeciesConcentrations = [model.s['ADP_g'].concentration, model.s['ADP_c'].concentration, model.s['DHAP_g'].concentration, model.s['GA3P_g'].concentration, model.s['Glc_c'].concentration, model.s['_2PGA_c'].concentration, model.s['Glc6P_g'].concentration, model.s['_3PGA_g'].concentration, model.s['Gly3P_g'].concentration, model.s['Pyr_c'].concentration, model.s['DHAP_c'].concentration, model.s['Fru6P_g'].concentration, model.s['NAD_g'].concentration, model.s['_3PGA_c'].concentration, model.s['Glc_g'].concentration, model.s['PEP_c'].concentration, model.s['_13BPGA_g'].concentration, model.s['ATP_g'].concentration, model.s['AMP_c'].concentration, model.s['ATP_c'].concentration, model.s['AMP_g'].concentration, model.s['Fru16BP_g'].concentration, model.s['Gly3P_c'].concentration, model.s['NADH_g'].concentration]
     kerkhovenActualConcentrations = [1.520133775, 0.9624601923, 2.803270922, 0.1110184998, 0.008428687709, 0.5386705367, 0.3937007366, 11.08505023, 1.274104358, 3.088012616, 3.507803671, 0.132241083, 3.926075328, 10.37790254, 0.008059459187, 1.334530214, 0.01380450523, 4.216834927, 0.1602003523, 2.777339455, 0.2630312977, 15.15902813, 1.492196329, 0.0739246723]
@@ -197,7 +197,7 @@ def TestPackage():
     from .sbml_files.Waugh2006 import Waugh2006
 
     model = Waugh2006()
-    model.RunSimulation(1)
+    model.RunSimulation(1.0, method=method)
     
     waughSpeciesConcentrations = [model.s['phi_I'].concentration, model.s['phi_R'].concentration, model.s['T'].concentration, model.s['K_T'].concentration]
     waughActualConcentrations = [232.9131481, 181.7337441, 1.783740715, 68.97275873]
@@ -209,7 +209,7 @@ def TestPackage():
     from .sbml_files.Zi2011 import Zi2011
 
     model = Zi2011()
-    model.RunSimulation(1, absoluteTolerance = 1e-16, relativeTolerance = 1e-16)
+    model.RunSimulation(1.0, method=method, absoluteTolerance = 1e-16, relativeTolerance = 1e-16)
     
     ziSpeciesConcentrations = [model.s['PSmad2c'].concentration, model.s['PSmad2n'].concentration, model.s['T1R_surf'].concentration, model.s['T2R_endo'].concentration, model.s['Smad2c'].concentration, model.s['Smad4n'].concentration, model.s['T2R_surf'].concentration, model.s['LRC_endo'].concentration, model.s['T1R_endo'].concentration, model.s['LRC_surf'].concentration, model.s['PSmad2_Smad4_c'].concentration, model.s['PSmad2_PSmad2_n'].concentration, model.s['TGF_beta_ex'].concentration, model.s['TGF_beta_endo'].concentration, model.s['Smad2n'].concentration, model.s['PSmad2_Smad4_n'].concentration, model.s['TGF_beta_ns'].concentration, model.s['Smad4c'].concentration, model.s['PSmad2_PSmad2_c'].concentration, model.c['Vmed'].size, model.p['totalNumT1R'].value, model.p['totalNumT2R'].value, model.p['totalNumLRC'].value, model.p['totalNumPSmad2'].value, model.p['totalNuclearPSmad2'].value, model.p['totalSmad2c'].value, model.p['totalSmad2n'].value, model.p['medium_TGF_beta_amount'].value, model.p['koff_ns'].value]
     ziActualConcentrations = [0.01391431482, 0.001607867046, 0.5255621489, 1.395985545, 60.54721489, 50.78878884, 0.02414685438, 0.04474184166, 6.479258, 0.1763515728, 0.03276905664, 2.141642116e-6, 0.0486999112, 0.0007455529254, 28.4939252, 0.01846754609, 0.001057648159, 50.76407599, 6.327163318e-6, 1.999484006e-9, 10004.99992, 2272.441261, 306.1259416, 76.74329454, 0.02007969642, 60.59391092, 28.51400489, 58424.81612, 2.033059171]
