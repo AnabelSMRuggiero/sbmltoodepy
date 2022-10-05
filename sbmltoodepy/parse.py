@@ -245,19 +245,43 @@ def ParseFunction(functionIndex, function):
     
     return newFunction
     
-def ParseInitialAssignment(assignmentIndex, assignment):
+def ParseAssignment(assignmentIndex, assignment):
     
-    newAssignment = sbmltoodepy.dataclasses.InitialAssignmentData()
+    newAssignment = sbmltoodepy.dataclasses.AssignmentData()
     
     if assignment.isSetIdAttribute():
         newAssignment.Id = str(assignment.getIdAttribute())
     else:
         newAssignment.Id = str(assignmentIndex + 1)
         
-    newAssignment.variable = assignment.getSymbol()
+    if hasattr(assignment, "getSymbol"):
+        newAssignment.variable = assignment.getSymbol()
+    elif hasattr(assignment, "getVariable"):
+        newAssignment.variable = assignment.getVariable()
     newAssignment.math = libsbml.formulaToL3String(assignment.getMath())
     newAssignment.name = assignment.getName()
     return newAssignment
+
+
+def ParseEvent(eventIndex, event):
+    newEvent = sbmltoodepy.dataclasses.EventData()
+
+    if event.isSetIdAttribute():
+        newEvent.Id = str(event.getIdAttribute())
+    else:
+        newEvent.Id = str(eventIndex + 1)
+
+    newEvent.trigger = libsbml.formulaToL3String(event.getTrigger().getMath())
+    newEvent.delay = None
+    if event.getDelay() is not None:
+        newEvent.delay = libsbml.formulaToL3String(event.getDelay().getMath())
+    newEvent.ListOfEventAssignments = [None for _ in range(event.getNumEventAssignments())]
+
+    for i in range(event.getNumEventAssignments()):
+        newEvent.ListOfEventAssignments[i] = ParseAssignment(i, event.getEventAssignment(i))
+
+    return newEvent
+
     
 def ParseSBMLFile(filePath):
     """
@@ -317,8 +341,13 @@ def ParseSBMLFile(filePath):
         modelData.reactions[newReaction.Id] = newReaction
 
     for i in range(model.getNumInitialAssignments()):
-        newAssignment = ParseInitialAssignment(i, model.getInitialAssignment(i))
+        newAssignment = ParseAssignment(i, model.getInitialAssignment(i))
         modelData.initialAssignments[newAssignment.Id] = newAssignment
+
+    for i in range(model.getNumEvents()):
+        newEvent = ParseEvent(i, model.getEvent(i))
+        modelData.events[newEvent.Id] = newEvent
+
     #print(model.getNumSpecies())
     return modelData
      
