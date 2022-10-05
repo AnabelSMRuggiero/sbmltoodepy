@@ -48,6 +48,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     assignmentRules = modelData.assignmentRules
     rateRules = modelData.rateRules
     initialAssignments = modelData.initialAssignments
+    events = modelData.events
     
     mathFuncs = {'abs' : 'abs',
                  'max' : 'max',
@@ -388,7 +389,21 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
             break
         else:
             raise Exception('Algebraic Loop in AssignmentRules')
-        
+
+    for key, event in events.items():
+        eventTrigger = ParseRHS(event.trigger)
+        #TODO: eventDelay even though seems not taken into account in the octave script https://www.ebi.ac.uk/biomodels/BIOMD0000000007#Files
+        outputFile.write(f"\t\tif {eventTrigger}:\n")
+        for assignment in event.ListOfEventAssignments:
+            assignmentLHS = ParseLHS(assignment.variable)
+            assignmentRHS = ParseRHS(assignment.math)
+            if assignment.variable in parameters:
+                outputFile.write("\t\t\t" + assignmentLHS + assignmentRHS + '\n')
+            elif assignment.variable in species:
+                outputFile.write("\t\t\t" + assignmentLHS + assignmentRHS + '\n')
+            elif assignment.variable in compartments:
+                outputFile.write("\t\t\t" + assignmentLHS + assignmentRHS + '\n')
+
     outputFile.write("\t\treturn\n\n")
         
 #    for functionId in functions:
@@ -449,7 +464,7 @@ def GenerateModel(modelData, outputFilePath, objectName = 'SBMLmodel'):
     outputFile.write('\tdef _SolveReactions(self, y, t):\n\n')
     outputFile.write('\t\tself.time = t\n')
     outputFile.write('\t\t' + yArray + ' = y\n')
-    outputFile.write('\t\tself.AssignmentRules()\n\n')
+#    outputFile.write('\t\tself.AssignmentRules()\n\n') #TODO: why AssignmentRules is called within and after the ODE solver?
 #    outputFile.write('\t\t[self.s[speciesId].UpdateCompartmentSizeMember() for speciesId in self.s]\n')
     rateArray = '[ '
     i = 0

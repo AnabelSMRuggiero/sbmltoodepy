@@ -27,6 +27,8 @@ class ModelData:
         Each value is an instance of FunctionData
     initialAssignments : dict
         Each value is an instance of InitialAssignmentData
+    events : dict
+        Each value is an instance of eventData
     parameters : dict
         Each value is an instance of ParameterData
     rateRules : dict
@@ -58,6 +60,8 @@ class ModelData:
 
         self.initialAssignments = {}
 
+        self.events = {}
+
     def DumpToJSON(self, filePath):
         
         fileObject = open(filePath, "w")
@@ -69,7 +73,8 @@ class ModelData:
                            "functions" : {},
                            "assignmentRules" : {},
                            "rateRules" : {},
-                           "initialAssignments" : {}
+                           "initialAssignments" : {},
+                            "events": {}
                            }
                            
         for key, component in self.parameters.items():
@@ -95,6 +100,9 @@ class ModelData:
             
         for key, component in self.initialAssignments.items():
             modelDictionary["initialAssignments"][key] = component.ToDictionary()
+
+        for key, component in self.events.items():
+            modelDictionary["events"][key] = component.ToDictionary()
             
         json.dump(modelDictionary, fileObject, indent = "\t")
         fileObject.close()
@@ -130,7 +138,11 @@ class ModelData:
             newModel.rateRules[key] = RateRuleData.ConstructFromDict(componentDict)
             
         for key, componentDict in modelData["initialAssignments"].items():
-            newModel.initialAssignments[key] = InitialAssignmentData.ConstructFromDict(componentDict)
+            newModel.initialAssignments[key] = AssignmentData.ConstructFromDict(componentDict)
+
+
+        for key, componentDict in modelData["events"].items():
+            newModel.events[key] = EventData.ConstructFromDict(componentDict)
             
         return newModel
         
@@ -437,7 +449,7 @@ class FunctionData:
         
         return newComponent
         
-class InitialAssignmentData:
+class AssignmentData:
     """
     This class holds all of the necessary data from an SBML model for an initial assignment.
  
@@ -474,4 +486,41 @@ class InitialAssignmentData:
         newComponent.variable = dataDict["variable"]
         newComponent.math = dataDict["math"]
         
+        return newComponent
+
+
+class EventData:
+    """
+    This class holds all of the necessary data from an SBML model for an event.
+
+    Attributes
+    ----------
+    Id : str
+    trigger: str
+    delay: str
+    ListofEventAssignments: list of AssignmentData
+    """
+
+    def __init__(self):
+        self.Id = None
+        self.trigger = None
+        self.delay = None
+        self.ListofEventAssignments = None
+
+    def ToDictionary(self):
+        # This function turns this class into a dictionary to prep dumping to JSON
+        returnDict = {"Id": self.Id,
+                      "delay": self.delay,
+                      "ListofEventAssignments": self.ListofEventAssignments
+                      }
+        return returnDict
+
+    @classmethod
+    def ConstructFromDict(cls, dataDict):
+        newComponent = cls()
+
+        newComponent.Id = dataDict["Id"]
+        newComponent.trigger = dataDict["trigger"]
+        newComponent.ListofEventAssignments = dataDict["ListofEventAssignments"]
+
         return newComponent
